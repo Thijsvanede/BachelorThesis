@@ -1,0 +1,8 @@
+load before store in PVS. op letten
+taak kan opnieuw gestolen worden, uitleg!
+Evaluation: 
+Introduction: PVS, bewijzen, Lace
+Linearisation points paper, doorsturen.
+vcs.utwente.nl git repository
+actieve schrijfstijl gebruiken
+Peek toevoegen bij wachten op 

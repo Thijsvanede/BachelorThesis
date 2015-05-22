@@ -1,0 +1,511 @@
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.2.20)  20 MAY 2015 23:11
+entering extended mode
+**C:/Users/Thijs/Documents/Universiteit*Twente/Bachelor*Thesis/Thesis/Thesis.te
+x
+
+("C:/Users/Thijs/Documents/Universiteit Twente/Bachelor Thesis/Thesis/Thesis.te
+x"
+LaTeX2e <2011/06/27>
+Babel <v3.8m> and hyphenation patterns for english, afrikaans, ancientgreek, ar
+abic, armenian, assamese, basque, bengali, bokmal, bulgarian, catalan, coptic, 
+croatian, czech, danish, dutch, esperanto, estonian, farsi, finnish, french, ga
+lician, german, german-x-2012-05-30, greek, gujarati, hindi, hungarian, iceland
+ic, indonesian, interlingua, irish, italian, kannada, kurmanji, latin, latvian,
+ lithuanian, malayalam, marathi, mongolian, mongolianlmc, monogreek, ngerman, n
+german-x-2012-05-30, nynorsk, oriya, panjabi, pinyin, polish, portuguese, roman
+ian, russian, sanskrit, serbian, slovak, slovenian, spanish, swedish, swissgerm
+an, tamil, telugu, turkish, turkmen, ukenglish, ukrainian, uppersorbian, usengl
+ishmax, welsh, loaded.
+
+("C:\Users\Thijs\Documents\Universiteit Twente\Bachelor Thesis\Thesis\sig-alter
+nate-br.cls" ("C:\Program Files\LaTeX\tex\latex\graphics\epsfig.sty"
+Package: epsfig 1999/02/16 v1.7a (e)psfig emulation (SPQR)
+
+("C:\Program Files\LaTeX\tex\latex\graphics\graphicx.sty"
+Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+
+("C:\Program Files\LaTeX\tex\latex\graphics\keyval.sty"
+Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
+\KV@toks@=\toks14
+)
+("C:\Program Files\LaTeX\tex\latex\graphics\graphics.sty"
+Package: graphics 2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
+
+("C:\Program Files\LaTeX\tex\latex\graphics\trig.sty"
+Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
+)
+("C:\Program Files\LaTeX\tex\latex\00miktex\graphics.cfg"
+File: graphics.cfg 2007/01/18 v1.5 graphics configuration of teTeX/TeXLive
+)
+Package graphics Info: Driver file: pdftex.def on input line 91.
+
+("C:\Program Files\LaTeX\tex\latex\pdftex-def\pdftex.def"
+File: pdftex.def 2011/05/27 v0.06d Graphics/color for pdfTeX
+
+("C:\Program Files\LaTeX\tex\generic\oberdiek\infwarerr.sty"
+Package: infwarerr 2010/04/08 v1.3 Providing info/warning/error messages (HO)
+)
+("C:\Program Files\LaTeX\tex\generic\oberdiek\ltxcmds.sty"
+Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
+)
+\Gread@gobject=\count79
+))
+\Gin@req@height=\dimen102
+\Gin@req@width=\dimen103
+)
+\epsfxsize=\dimen104
+\epsfysize=\dimen105
+)
+("C:\Program Files\LaTeX\tex\latex\amsfonts\amssymb.sty"
+Package: amssymb 2013/01/14 v3.01 AMS font symbols
+
+("C:\Program Files\LaTeX\tex\latex\amsfonts\amsfonts.sty"
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\@emptytoks=\toks15
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+))
+("C:\Program Files\LaTeX\tex\latex\amsmath\amsmath.sty"
+Package: amsmath 2013/01/14 v2.14 AMS math features
+\@mathmargin=\skip41
+
+For additional information on amsmath, use the `?' option.
+("C:\Program Files\LaTeX\tex\latex\amsmath\amstext.sty"
+Package: amstext 2000/06/29 v2.01
+
+("C:\Program Files\LaTeX\tex\latex\amsmath\amsgen.sty"
+File: amsgen.sty 1999/11/30 v2.0
+\@emptytoks=\toks16
+\ex@=\dimen106
+))
+("C:\Program Files\LaTeX\tex\latex\amsmath\amsbsy.sty"
+Package: amsbsy 1999/11/29 v1.2d
+\pmbraise@=\dimen107
+)
+("C:\Program Files\LaTeX\tex\latex\amsmath\amsopn.sty"
+Package: amsopn 1999/12/14 v2.01 operator names
+)
+\inf@bad=\count80
+LaTeX Info: Redefining \frac on input line 210.
+\uproot@=\count81
+\leftroot@=\count82
+LaTeX Info: Redefining \overline on input line 306.
+\classnum@=\count83
+\DOTSCASE@=\count84
+LaTeX Info: Redefining \ldots on input line 378.
+LaTeX Info: Redefining \dots on input line 381.
+LaTeX Info: Redefining \cdots on input line 466.
+\Mathstrutbox@=\box26
+\strutbox@=\box27
+\big@size=\dimen108
+LaTeX Font Info:    Redeclaring font encoding OML on input line 566.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 567.
+\macc@depth=\count85
+\c@MaxMatrixCols=\count86
+\dotsspace@=\muskip10
+\c@parentequation=\count87
+\dspbrk@lvl=\count88
+\tag@help=\toks17
+\row@=\count89
+\column@=\count90
+\maxfields@=\count91
+\andhelp@=\toks18
+\eqnshift@=\dimen109
+\alignsep@=\dimen110
+\tagshift@=\dimen111
+\tagwidth@=\dimen112
+\totwidth@=\dimen113
+\lineht@=\dimen114
+\@envbody=\toks19
+\multlinegap=\skip42
+\multlinetaggap=\skip43
+\mathdisplay@stack=\toks20
+LaTeX Info: Redefining \[ on input line 2665.
+LaTeX Info: Redefining \] on input line 2666.
+)
+Document Class 'sig-alternate-br' <29th. January '10>. Modified by N. Boom, Uni
+versity of Twente - n.boom@student.utwente.nl
+Document Class 'sig-alternate' <22nd. April '09>. Modified by G.K.M. Tobin/Gerr
+y Murray
+Based in part upon document Style `acmconf' <22 May 89>. Hacked 4/91 by
+shivers@cs.cmu.edu, 4/93 by theobald@cs.mcgill.ca
+Excerpts were taken from (Journal Style) 'esub2acm.cls'.
+****** Bugs/comments/suggestions/technicalities to Gerry Murray -- murray@hq.ac
+m.org ******
+Questions on the style, SIGS policies, etc. to Adrienne Griscti griscti@acm.org
+
+\footheight=\dimen115
+\@maxsep=\dimen116
+\@dblmaxsep=\dimen117
+\aucount=\count92
+\originalaucount=\count93
+\auwidth=\dimen118
+\auskip=\dimen119
+\auskipcount=\count94
+\auskip=\dimen120
+\allauboxes=\dimen121
+\addauthors=\toks21
+\addauflag=\count95
+\subtitletext=\toks22
+\savesection=\count96
+\sectioncntr=\count97
+\c@figure=\count98
+\c@table=\count99
+\titleboxnotes=\toks23
+\titleboxnoteflag=\count100
+Document Class: sig-alternate-br 2009/04/22 - V2.4 - based on acmproc.cls V1.3 
+<Nov. 30 '99>
+("C:\Program Files\LaTeX\tex\latex\base\latexsym.sty"
+Package: latexsym 1998/08/17 v2.2e Standard LaTeX package (lasy symbols)
+\symlasy=\mathgroup6
+LaTeX Font Info:    Overwriting symbol font `lasy' in version `bold'
+(Font)                  U/lasy/m/n --> U/lasy/b/n on input line 47.
+)
+\@acmtitlebox=\box28
+\titlenotecount=\count101
+\tntoks=\toks24
+\tntokstwo=\toks25
+\tntoksthree=\toks26
+\tntoksfour=\toks27
+\tntoksfive=\toks28
+\catcount=\count102
+\copyrightnotice=\toks29
+\conf=\toks30
+\confinfo=\toks31
+\c@part=\count103
+\c@section=\count104
+\c@subsection=\count105
+\c@subsubsection=\count106
+\c@subsubsubsection=\count107
+\c@paragraph=\count108
+
+Using 'Abbrev' bibliography style
+LaTeX Info: Redefining \cite on input line 1217.
+\bibindent=\dimen122
+\colcntr=\count109
+\saveb@x=\box29
+\copyrtyr=\toks32
+\acmcopyr=\toks33
+\boilerplate=\toks34
+\copyrightetc=\toks35
+("C:\Program Files\LaTeX\tex\latex\base\fontenc.sty"
+Package: fontenc 2005/09/27 v1.99g Standard LaTeX package
+
+("C:\Program Files\LaTeX\tex\latex\base\t1enc.def"
+File: t1enc.def 2005/09/27 v1.99g Standard LaTeX file
+LaTeX Font Info:    Redeclaring font encoding T1 on input line 43.
+)
+LaTeX Font Info:    Try loading font information for T1+aer on input line 100.
+
+("C:\Program Files\LaTeX\tex\latex\ae\t1aer.fd"
+File: t1aer.fd 1997/11/16 Font definitions for T1/aer.
+)))
+("C:\Program Files\LaTeX\tex\latex\placeins\placeins.sty"
+Package: placeins 2005/04/18  v 2.2
+)
+("C:\Program Files\LaTeX\tex\latex\caption\caption.sty"
+Package: caption 2013/05/02 v3.3-89 Customizing captions (AR)
+
+("C:\Program Files\LaTeX\tex\latex\caption\caption3.sty"
+Package: caption3 2013/05/02 v1.6-88 caption3 kernel (AR)
+Package caption3 Info: TeX engine: e-TeX on input line 57.
+\captionmargin=\dimen123
+\captionmargin@=\dimen124
+\captionwidth=\dimen125
+\caption@tempdima=\dimen126
+\caption@indent=\dimen127
+\caption@parindent=\dimen128
+\caption@hangindent=\dimen129
+\abovecaptionskip=\skip44
+\belowcaptionskip=\skip45
+Package caption Info: Unknown document class (or package),
+(caption)             standard defaults will be used.
+)
+
+Package caption Warning: Unsupported document class (or package) detected,
+(caption)                usage of the caption package is not recommended.
+See the caption package documentation for explanation.
+
+Package caption Info: \@makecaption = \long macro:#1#2-> \vskip 10pt \setbox \@
+tempboxa \hbox {\textbf {#1. #2}} \ifdim \wd \@tempboxa >\hsize \textbf {#1. #2
+}\par \else \hbox to\hsize {\hfil \box \@tempboxa \hfil } \fi .
+\c@ContinuedFloat=\count110
+) ("C:\Program Files\LaTeX\tex\latex\caption\subcaption.sty"
+Package: subcaption 2013/02/03 v1.1-62 Sub-captions (AR)
+\c@subfigure=\count111
+\c@subtable=\count112
+)
+("C:\Program Files\LaTeX\tex\latex\listings\listings.sty"
+\lst@mode=\count113
+\lst@gtempboxa=\box30
+\lst@token=\toks36
+\lst@length=\count114
+\lst@currlwidth=\dimen130
+\lst@column=\count115
+\lst@pos=\count116
+\lst@lostspace=\dimen131
+\lst@width=\dimen132
+\lst@newlines=\count117
+\lst@lineno=\count118
+\lst@maxwidth=\dimen133
+
+("C:\Program Files\LaTeX\tex\latex\listings\lstmisc.sty"
+File: lstmisc.sty 2007/02/22 1.4 (Carsten Heinz)
+\c@lstnumber=\count119
+\lst@skipnumbers=\count120
+\lst@framebox=\box31
+)
+("C:\Program Files\LaTeX\tex\latex\listings\listings.cfg"
+File: listings.cfg 2007/02/22 1.4 listings configuration
+))
+Package: listings 2007/02/22 1.4 (Carsten Heinz)
+\c@definition=\count121
+\c@lemma=\count122
+
+("C:\Users\Thijs\Documents\Universiteit Twente\Bachelor Thesis\Thesis\Thesis.au
+x")
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 32.
+LaTeX Font Info:    ... okay on input line 32.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 32.
+LaTeX Font Info:    ... okay on input line 32.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 32.
+LaTeX Font Info:    ... okay on input line 32.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 32.
+LaTeX Font Info:    ... okay on input line 32.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 32.
+LaTeX Font Info:    ... okay on input line 32.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 32.
+LaTeX Font Info:    ... okay on input line 32.
+ ("C:\Program Files\LaTeX\tex\context\base\supp-pdf.mkii"
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count123
+\scratchdimen=\dimen134
+\scratchbox=\box32
+\nofMPsegments=\count124
+\nofMParguments=\count125
+\everyMPshowfont=\toks37
+\MPscratchCnt=\count126
+\MPscratchDim=\dimen135
+\MPnumerator=\count127
+\makeMPintoPDFobject=\count128
+\everyMPtoPDFconversion=\toks38
+)
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: listings package is loaded.
+Package caption Info: End \AtBeginDocument code.
+\c@lstlisting=\count129
+LaTeX Font Info:    Try loading font information for U+msa on input line 33.
+ ("C:\Program Files\LaTeX\tex\latex\amsfonts\umsa.fd"
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Try loading font information for U+msb on input line 33.
+
+("C:\Program Files\LaTeX\tex\latex\amsfonts\umsb.fd"
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+LaTeX Font Info:    Try loading font information for U+lasy on input line 33.
+
+("C:\Program Files\LaTeX\tex\latex\base\ulasy.fd"
+File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
+)
+Overfull \hbox (10.79999pt too wide) in paragraph at lines 33--33
+ [][][] 
+ []
+
+
+Overfull \hbox (7.80002pt too wide) in paragraph at lines 33--33
+ [] 
+ []
+
+
+Overfull \hbox (1.57037pt too wide) in paragraph at lines 43--46
+\T1/aer/m/n/9 creased de-mand for con-cur-rent pro-gram-ming to fully utilise
+ []
+
+LaTeX Font Info:    Try loading font information for T1+aett on input line 72.
+("C:\Program Files\LaTeX\tex\latex\ae\t1aett.fd"
+File: t1aett.fd 1997/11/16 Font definitions for T1/aett.
+) [1{C:/Users/Thijs/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}
+
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 111--112
+[]\T1/aer/m/n/9 Owner thread only calls \T1/aett/m/n/9 grow_shared \T1/aer/m/n/
+9 and
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 136--137
+[]\T1/aett/m/n/9 tail.new > tail.old || (tail.new $\OMS/cmsy/m/n/9 $ \T1/aett/
+m/n/9 tail.old &&
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 143--144
+[]\T1/aett/m/n/9 (pop() == STOLEN && head.new < head.old) ||
+ []
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+Overfull \hbox (4.13979pt too wide) in paragraph at lines 163--167
+\T1/aett/m/n/9 (tail.old == head && pop() && tail.new $\OMS/cmsy/m/n/9 $ \T1/a
+ett/m/n/9 head) \T1/aer/m/n/9 and
+ []
+
+
+Overfull \hbox (1.35892pt too wide) in paragraph at lines 163--167
+\T1/aett/m/n/9 (tail.old $\OMS/cmsy/m/n/9 $ \T1/aett/m/n/9 tail.new && pop() =
+= STOLEN) || pop()
+ []
+
+[2]
+Overfull \hbox (27.70854pt too wide) in paragraph at lines 258--266
+ [][] 
+ []
+
+
+Overfull \hbox (27.70854pt too wide) in paragraph at lines 272--280
+ [][] 
+ []
+
+
+Overfull \hbox (20.23024pt too wide) in paragraph at lines 286--292
+ [][] 
+ []
+
+
+Overfull \hbox (25.11708pt too wide) in paragraph at lines 297--304
+ [][] 
+ []
+
+
+Overfull \hbox (30.80469pt too wide) in paragraph at lines 309--315
+ [][] 
+ []
+
+
+Overfull \hbox (31.7674pt too wide) in paragraph at lines 320--326
+ [][] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 243--329
+[]$[]$
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 243--329
+$[]$
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 243--329
+$[]$
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 243--329
+$[]$
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 243--329
+$[]$
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 243--329
+$[]$
+ []
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+Overfull \hbox (6.13373pt too wide) in paragraph at lines 343--350
+\T1/aett/m/n/9 shrink_shared() \T1/aer/m/n/9 re-turns true. The method \T1/aett
+/m/n/9 shrink_shared
+ []
+
+[3]
+Overfull \hbox (22.31328pt too wide) in paragraph at lines 377--379
+[]\T1/aer/m/n/9 At the sec-ond lin-eari-sa-tion point at line 15, the flag \T1/
+aett/m/n/9 o_allstolen
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 381--405
+[]$[]$
+ []
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+<Push_flow_diagram_2.png, id=24, 586.44093pt x 375.65344pt>
+File: Push_flow_diagram_2.png Graphic file (type png)
+
+<use Push_flow_diagram_2.png>
+Package pdftex.def Info: Push_flow_diagram_2.png used on input line 423.
+(pdftex.def)             Requested size: 205.25739pt x 131.48067pt.
+
+<Pop_flow_diagram_2.png, id=25, 811.53188pt x 465.99094pt>
+File: Pop_flow_diagram_2.png Graphic file (type png)
+
+<use Pop_flow_diagram_2.png>
+Package pdftex.def Info: Pop_flow_diagram_2.png used on input line 443.
+(pdftex.def)             Requested size: 202.88246pt x 116.49744pt.
+ [4 <C:/Users/Thijs/Documents/Universiteit Twente/Bachelor Thesis/Thesis/Push_f
+low_diagram_2.png> <C:/Users/Thijs/Documents/Universiteit Twente/Bachelor Thesi
+s/Thesis/Pop_flow_diagram_2.png>]
+Overfull \hbox (25.67224pt too wide) in paragraph at lines 500--501
+\T1/aer/m/n/9 vari-ables only change through meth-ods \T1/aett/m/n/9 push \T1/a
+er/m/n/9 and \T1/aett/m/n/9 shrink_shared\T1/aer/m/n/9 .
+ []
+
+
+Overfull \hbox (47.61407pt too wide) in paragraph at lines 507--508
+\T1/aer/m/n/9 re-turns true. By adding lem-mas \T1/aett/m/n/9 all-stolen_set \T
+1/aer/m/n/9 and \T1/aett/m/n/9 o_allstolen_set
+ []
+
+
+Overfull \hbox (11.28888pt too wide) in paragraph at lines 518--519
+\T1/aett/m/it/9 (tail.new < tail.old \T1/aer/m/it/9 and \T1/aett/m/it/9 tail.ol
+d-tail.new $\OMS/cmsy/m/n/9 $ \T1/aett/m/it/9 #pop()) 
+ []
+
+
+("C:\Users\Thijs\Documents\Universiteit Twente\Bachelor Thesis\Thesis\Thesis.bb
+l") [5] [6]
+("C:\Users\Thijs\Documents\Universiteit Twente\Bachelor Thesis\Thesis\Thesis.au
+x") ) 
+Here is how much of TeX's memory you used:
+ 4828 strings out of 493921
+ 67688 string characters out of 3149287
+ 244879 words of memory out of 3000000
+ 8040 multiletter control sequences out of 15000+200000
+ 56948 words of font info for 82 fonts, out of 3000000 for 9000
+ 841 hyphenation exceptions out of 8191
+ 41i,10n,38p,1016b,996s stack positions out of 5000i,500n,10000p,200000b,50000s
+{C:/Program Files/LaTeX/fonts/enc/dvips/fontname/8r.enc}<C:/Program Files/
+LaTeX/fonts/type1/public/amsfonts/cm/cmbx8.pfb><C:/Program Files/LaTeX/fonts/ty
+pe1/public/amsfonts/cm/cmbx9.pfb><C:/Program Files/LaTeX/fonts/type1/public/ams
+fonts/cm/cmcsc10.pfb><C:/Program Files/LaTeX/fonts/type1/public/amsfonts/cm/cmi
+tt10.pfb><C:/Program Files/LaTeX/fonts/type1/public/amsfonts/cm/cmmi9.pfb><C:/P
+rogram Files/LaTeX/fonts/type1/public/amsfonts/cm/cmr9.pfb><C:/Program Files/La
+TeX/fonts/type1/public/amsfonts/cm/cmsy9.pfb><C:/Program Files/LaTeX/fonts/type
+1/public/amsfonts/cm/cmti9.pfb><C:/Program Files/LaTeX/fonts/type1/public/amsfo
+nts/cm/cmtt9.pfb><C:/Program Files/LaTeX/fonts/type1/urw/helvetic/uhvb8a.pfb><C
+:/Program Files/LaTeX/fonts/type1/urw/helvetic/uhvr8a.pfb><C:/Program Files/LaT
+eX/fonts/type1/urw/times/utmb8a.pfb><C:/Program Files/LaTeX/fonts/type1/urw/tim
+es/utmr8a.pfb><C:/Program Files/LaTeX/fonts/type1/urw/times/utmri8a.pfb>
+Output written on Thesis.pdf (6 pages, 281407 bytes).
+PDF statistics:
+ 80 PDF objects out of 1000 (max. 8388607)
+ 0 named destinations out of 1000 (max. 500000)
+ 11 words of extra memory for PDF output out of 10000 (max. 10000000)
+

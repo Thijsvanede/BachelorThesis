@@ -1,0 +1,56 @@
+\begin{thebibliography}{10}
+
+\bibitem{coq2015}
+The coq proof assistant.
+\newblock https://coq.inria.fr/what-is-coq.
+\newblock Accessed: 2015-03-29.
+
+\bibitem{badban2005verification}
+B.~Badban, W.~Fokkink, J.F. Groote, J.~Pang, and J.~van~de Pol.
+\newblock Verification of a sliding window protocol in $\mu$crl and pvs.
+\newblock {\em Formal Aspects of Computing}, 17(3):342--388, 2005.
+
+\bibitem{colvin2006formal}
+R.~Colvin, L.~Groves, V.~Luchangco, and M.~Moir.
+\newblock Formal verification of a lazy concurrent list-based set algorithm.
+\newblock In {\em Computer Aided Verification}, pages 475--488. Springer, 2006.
+
+\bibitem{herlihy1990}
+M.P. Herlihy and J.M. Wing.
+\newblock Linearizability: A correctness condition for concurrent objects.
+\newblock {\em ACM Transactions on Programming Languages and Systems (TOPLAS)},
+  12(3):463--492, 1990.
+
+\bibitem{owre1992pvs}
+S.~Owre, J.~M. Rushby, and N.~Shankar.
+\newblock Pvs: A prototype verification system.
+\newblock In {\em Automated Deduction - CADE-11}, pages 748--752. Springer,
+  1992.
+
+\bibitem{paulson1994isabelle}
+Lawrence~C Paulson.
+\newblock {\em Isabelle: A generic theorem prover}, volume 828.
+\newblock Springer Science \& Business Media, 1994.
+
+\bibitem{reynolds2002}
+John~C Reynolds.
+\newblock Separation logic: A logic for shared mutable data structures.
+\newblock In {\em Logic in Computer Science, 2002. Proceedings. 17th Annual
+  IEEE Symposium on}, pages 55--74. IEEE, 2002.
+
+\bibitem{shankar1993verification}
+N.~Shankar.
+\newblock Verification of real-time systems using pvs.
+\newblock In {\em Computer Aided Verification}, pages 280--291. Springer, 1993.
+
+\bibitem{smullyan1995}
+Raymond~M Smullyan.
+\newblock {\em First-order logic}.
+\newblock Courier Corporation, 1995.
+
+\bibitem{vanDijk2014206}
+T.~van Dijk and J.C. van~de Pol.
+\newblock Lace: Non-blocking split deque for work-stealing.
+\newblock {\em Lecture Notes in Computer Science}, 8806:206--217, 2014.
+
+\end{thebibliography}

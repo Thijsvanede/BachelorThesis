@@ -1,0 +1,9 @@
+This is BibTeX, Version 0.99dThe top-level auxiliary file: Thesis.aux
+The style file: plain.bst
+Database file #1: Bibliography.bib
+I was expecting a `,' or a `}'---line 9 of file Bibliography.bib
+ :  doi={10.1007/978-3-319-14313-2_18}
+ :                                    ;
+I'm skipping whatever remains of this entry
+Warning--to sort, need author or key in coq2015
+(There was 1 error message)

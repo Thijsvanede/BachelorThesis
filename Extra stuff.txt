@@ -1,0 +1,14 @@
+
+
+
+\subsection{Theorems to be proven}
+//TODO add variables staying within bounds \&\& own copies being equal to global variables.
+A couple of theorems leading to invariants need to be proven to be certain Lace works correct.
+The first theorem is that every task is stolen only once.
+The second theorem is that every task is executed exactly once.
+To prove both theorems, they need to be rewritten as invariants.
+When every task is stolen only once, it means thieving threads can only steal tasks $\geq$ \texttt{tail} and that when tail reduces, a task cannot be stolen again.
+This is written as an invariant in Figure \ref{inv:stolen}.
+
+
+
