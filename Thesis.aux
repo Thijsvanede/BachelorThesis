@@ -51,37 +51,38 @@
 \@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Flow diagram of method pop.\relax }}{\thepage }}
 \newlabel{fig:pop}{{6}{\thepage }}
 \@writefile{toc}{\contentsline {section}{\numberline {6}Proving Lace}{\thepage }}
-\newlabel{lem:headsize}{{1}{\thepage }}
-\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces PVS proof of head $\leq $ size\relax }}{\thepage }}
+\newlabel{lem:allstolen}{{1}{\thepage }}
+\newlabel{lem:split}{{2}{\thepage }}
+\newlabel{lem:headsize}{{3}{\thepage }}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces PVS proof of 0 $\leq $ head $\leq $ size\relax }}{\thepage }}
 \newlabel{pvs:head}{{7}{\thepage }}
-\newlabel{lem:headzero}{{2}{\thepage }}
-\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces PVS proof of head $\geq $ 0\relax }}{\thepage }}
-\newlabel{pvs:headzero}{{8}{\thepage }}
-\newlabel{lem:allst.var}{{3}{\thepage }}
-\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces PVS proof of Lemma 3\hbox {}\relax }}{\thepage }}
-\newlabel{pvs:allst.var}{{9}{\thepage }}
-\newlabel{lem:allstolen}{{4}{\thepage }}
-\newlabel{lem:split}{{5}{\thepage }}
-\newlabel{lem:shrinkshared}{{6}{\thepage }}
-\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces PVS proof of shrink\_shared $\Rightarrow $ allstolen \&\& o\_allstolen\relax }}{\thepage }}
-\newlabel{pvs:shrshared}{{10}{\thepage }}
-\newlabel{lem:incrtail}{{9}{\thepage }}
-\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces PVS proof of incrementing tail\relax }}{\thepage }}
-\newlabel{pvs:tailincr}{{11}{\thepage }}
-\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces PVS proof pop() = STOLEN implies allstolen\relax }}{\thepage }}
-\newlabel{pvs:popallstolen}{{12}{\thepage }}
-\newlabel{lem:shrinkallstolen}{{11}{\thepage }}
-\newlabel{lem:lin30}{{14}{\thepage }}
-\newlabel{lem:lin36}{{15}{\thepage }}
+\newlabel{lem:incrtail}{{4}{\thepage }}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces PVS proof of incrementing tail\relax }}{\thepage }}
+\newlabel{pvs:tailincr}{{8}{\thepage }}
+\newlabel{lem:lin30}{{5}{\thepage }}
+\newlabel{lem:lin36}{{6}{\thepage }}
+\newlabel{lem:lin3036}{{7}{\thepage }}
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces PVS proof of Lemmas 5\hbox {}, 6\hbox {}, and 7\hbox {}. Method decr\_tail returns the modified value of tail. lem\_decr\_a is used in Lemma 5\hbox {}, lem\_decr\_b is used in Lemma 6\hbox {}, and lem\_decr\_c is used in Lemma 7\hbox {}. Variables tail and split correspond to the variables read at line 27 of Lace, variable t corresponds to the newly read variable tail at line 32 of Lace.\relax }}{\thepage }}
+\newlabel{pvs:decrtail}{{9}{\thepage }}
+\newlabel{lem:allst.var}{{8}{\thepage }}
+\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces PVS proof of Lemma 8\hbox {}\relax }}{\thepage }}
+\newlabel{pvs:allst.var}{{10}{\thepage }}
+\newlabel{lem:grshr}{{9}{\thepage }}
+\newlabel{lem:shrsh.var}{{10}{\thepage }}
+\newlabel{lem:lin23}{{11}{\thepage }}
+\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces PVS proof of Lemma 11\hbox {}.\relax }}{\thepage }}
+\newlabel{pvs:lin23}{{11}{\thepage }}
+\newlabel{lem:shrinkshared}{{12}{\thepage }}
+\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces PVS proof of shrink\_shared $\Rightarrow $ allstolen \&\& o\_allstolen\relax }}{\thepage }}
+\newlabel{pvs:shrshared}{{12}{\thepage }}
+\newlabel{lem:popstolen}{{15}{\thepage }}
+\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces PVS proof pop() = STOLEN implies allstolen\relax }}{\thepage }}
+\newlabel{pvs:popallstolen}{{13}{\thepage }}
+\newlabel{lem:shrinkallstolen}{{16}{\thepage }}
 \citation{vanDijk2014206}
 \citation{vanDijk2014206}
 \bibdata{Bibliography}
 \bibcite{coq2015}{1}
-\newlabel{lem:lin3036}{{16}{\thepage }}
-\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces PVS proof of Lemmas 14\hbox {}, 15\hbox {}, and 16\hbox {}. Method decr\_tail returns the modified value of tail. lem\_decr\_a is used in Lemma 14\hbox {}, lem\_decr\_b is used in Lemma 15\hbox {}, and lem\_decr\_c is used in Lemma 16\hbox {}.\relax }}{\thepage }}
-\newlabel{pvs:decrtail}{{13}{\thepage }}
-\@writefile{lof}{\contentsline {figure}{\numberline {14}{\ignorespaces Lace algorithm as described in "Lace: Non-blocking Split Deque for Work-Stealing"\cite  {vanDijk2014206}\relax }}{\thepage }}
-\newlabel{fig:Lace}{{14}{\thepage }}
 \bibcite{badban2005verification}{2}
 \bibcite{colvin2006formal}{3}
 \bibcite{herlihy1990}{4}
@@ -92,6 +93,8 @@
 \bibcite{smullyan1995}{9}
 \bibcite{vanDijk2014206}{10}
 \@writefile{toc}{\contentsline {section}{\numberline {7}References}{\thepage }}
+\@writefile{lof}{\contentsline {figure}{\numberline {14}{\ignorespaces Lace algorithm as described in "Lace: Non-blocking Split Deque for Work-Stealing"\cite  {vanDijk2014206}\relax }}{\thepage }}
+\newlabel{fig:Lace}{{14}{\thepage }}
 \newlabel{tab:head}{{1a}{\thepage }}
 \newlabel{sub@tab:head}{{a}{\thepage }}
 \newlabel{tab:split}{{1b}{\thepage }}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.2.20)  26 MAY 2015 22:36
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.2.20)  27 MAY 2015 22:28
 entering extended mode
 **C:/Users/Thijs/Documents/Universiteit*Twente/Bachelor*Thesis/Thesis/Thesis.te
 x
@@ -458,215 +458,300 @@ File: Pop_flow_diagram_2.png Graphic file (type png)
 <use Pop_flow_diagram_2.png>
 Package pdftex.def Info: Pop_flow_diagram_2.png used on input line 443.
 (pdftex.def)             Requested size: 202.88246pt x 116.49744pt.
- [4 <C:/Users/Thijs/Documents/Universiteit Twente/Bachelor Thesis/Thesis/Push_f
-low_diagram_2.png> <C:/Users/Thijs/Documents/Universiteit Twente/Bachelor Thesi
-s/Thesis/Pop_flow_diagram_2.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 518--520
-\T1/aett/m/n/9 lem_tail: LEMMA tail < split IM-PLIES
- []
 
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-Overfull \hbox (7.72678pt too wide) in paragraph at lines 525--527
+Overfull \hbox (7.72678pt too wide) in paragraph at lines 457--459
 []\T1/aett/m/it/9 allstolen = o_allstolen \T1/aer/m/it/9 at load op-er-a-tions.
 
  []
 
+[4 <C:/Users/Thijs/Documents/Universiteit Twente/Bachelor Thesis/Thesis/Push_fl
+ow_diagram_2.png> <C:/Users/Thijs/Documents/Universiteit Twente/Bachelor Thesis
+/Thesis/Pop_flow_diagram_2.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 506--513
 
-Overfull \hbox (25.67224pt too wide) in paragraph at lines 529--535
-\T1/aer/m/n/9 vari-ables only change through meth-ods \T1/aett/m/n/9 push \T1/a
-er/m/n/9 and \T1/aett/m/n/9 shrink_shared\T1/aer/m/n/9 .
  []
 
 
-Overfull \hbox (47.61407pt too wide) in paragraph at lines 556--557
-\T1/aer/m/n/9 re-turns true. By adding lem-mas \T1/aett/m/n/9 all-stolen_set \T
-1/aer/m/n/9 and \T1/aett/m/n/9 o_allstolen_set
+Underfull \hbox (badness 10000) in paragraph at lines 506--513
+
  []
 
 
-Overfull \hbox (11.28888pt too wide) in paragraph at lines 567--568
-\T1/aett/m/it/9 (tail.new < tail.old \T1/aer/m/it/9 and \T1/aett/m/it/9 tail.ol
-d-tail.new $\OMS/cmsy/m/n/9 $ \T1/aett/m/it/9 #pop()) 
+Underfull \hbox (badness 10000) in paragraph at lines 506--513
+\T1/aett/m/n/9 lemma_size: LEMMA incr_head(head) <= size
  []
 
-[5]
-Overfull \hbox (6.45607pt too wide) in paragraph at lines 586--588
+
+Overfull \hbox (6.45607pt too wide) in paragraph at lines 521--523
 []\T1/aett/m/it/9 tail.new = tail.old+1 $\OMS/cmsy/m/n/9 )$ \T1/aett/m/it/9 !al
 l-stolen \T1/aer/m/it/9 and
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 593--597
+Underfull \hbox (badness 10000) in paragraph at lines 528--532
 []\T1/aett/m/n/9 cas(var1, var2, exp1, exp2, val1, val2: pos-nat)
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 593--597
+Underfull \hbox (badness 10000) in paragraph at lines 528--532
 \T1/aett/m/n/9 : bool = IF (var1 = exp1 AND var2 = exp2 THEN
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 593--597
+Underfull \hbox (badness 10000) in paragraph at lines 528--532
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 593--597
+Underfull \hbox (badness 10000) in paragraph at lines 528--532
 \T1/aett/m/n/9 steal(t, s, tail, split, all-stolen): bool =
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 593--597
+Underfull \hbox (badness 10000) in paragraph at lines 528--532
 \T1/aett/m/n/9 IF all-stolen THEN false ELSE (IF t < s THEN
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 593--597
+Underfull \hbox (badness 10000) in paragraph at lines 528--532
 \T1/aett/m/n/9 cas(t,s,tail,split,(t+1),s) ELSE false EN-DIF)
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 593--597
+Underfull \hbox (badness 10000) in paragraph at lines 528--532
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 593--597
+Underfull \hbox (badness 10000) in paragraph at lines 528--532
 \T1/aett/m/n/9 lem_incr_tail: LEMMA (NOT all-stolen AND
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 593--597
+Underfull \hbox (badness 10000) in paragraph at lines 528--532
 \T1/aett/m/n/9 t < s AND t = tail AND s = split) IM-PLIES
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 593--597
+Underfull \hbox (badness 10000) in paragraph at lines 528--532
 \T1/aett/m/n/9 lem_incr_tail: LEMMA NOT (NOT all-stolen AND
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 593--597
+Underfull \hbox (badness 10000) in paragraph at lines 528--532
 \T1/aett/m/n/9 t < s AND t = tail AND s = split) IM-PLIES
  []
 
 
-Overfull \hbox (23.0541pt too wide) in paragraph at lines 602--603
+Overfull \hbox (3.79414pt too wide) in paragraph at lines 574--576
+[]\T1/aett/m/it/9 min(linearisation point 30, lin-eari-sa-
+ []
+
+[5]
+Underfull \hbox (badness 10000) in paragraph at lines 586--590
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 586--590
+\T1/aett/m/n/9 lem_decr_a: LEMMA NOT tail = split AND tail <
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 586--590
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 586--590
+\T1/aett/m/n/9 lem_decr_b: LEMMA NOT tail = split AND t >
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 586--590
+\T1/aett/m/n/9 decr_tail(tail,split) AND t < split IM-PLIES
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 586--590
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 586--590
+\T1/aett/m/n/9 lem_decr_c: LEMMA NOT tail = split AND tail
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 586--590
+\T1/aett/m/n/9 < split AND t > decr_tail(tail, split) AND
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 586--590
+\T1/aett/m/n/9 t < split IM-PLIES decr_tail(tail, split) <=
+ []
+
+
+Overfull \hbox (9.44965pt too wide) in paragraph at lines 611--616
+\T1/aett/m/n/9 split.old \T1/aer/m/n/9 and Lemma 5[] ex-pounds \T1/aett/m/n/9 s
+plit.new $\OMS/cmsy/m/n/9 $ \T1/aett/m/n/9 split.old
+ []
+
+
+Overfull \hbox (3.4694pt too wide) in paragraph at lines 626--627
+[]\T1/aer/m/n/9 This proves that for all lin-eari-sa-tion points mod-i-fy-ing \
+T1/aett/m/n/9 tail,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 629--635
+\T1/aett/m/n/9 lem_tail: LEMMA tail < split IM-PLIES
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 629--635
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 629--635
+\T1/aett/m/n/9 lem_split: LEMMA NOT tail = split AND t >
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 629--635
+\T1/aett/m/n/9 decr_tail(tail, split) AND t < split IM-PLIES
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 629--635
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 629--635
+\T1/aett/m/n/9 lem_head: LEMMA split < head IM-PLIES split <=
+ []
+
+
+Overfull \hbox (4.58504pt too wide) in paragraph at lines 644--648
+[]\T1/aer/m/n/9 Figure 6[] spec-i-fies that \T1/aett/m/n/9 grow_shared\T1/aer/m
+/n/9 , rep-re-sented
+ []
+
+
+Overfull \hbox (20.91988pt too wide) in paragraph at lines 644--648
+\T1/aer/m/n/9 by lin-eari-sa-tion point 23, can only be reached if $\OMS/cmsy/m
+/n/9 :$ \T1/aett/m/n/9 o_allstolen\T1/aer/m/n/9 .
+ []
+
+
+Overfull \hbox (1.65211pt too wide) in paragraph at lines 644--648
+\T1/aer/m/n/9 owner thread. In com-bi-na-tion with Lemma \T1/aett/m/n/9 lem:all
+stolen
+ []
+
+
+Overfull \hbox (1.56306pt too wide) in paragraph at lines 662--664
+[]\T1/aer/m/it/9 Linearisation point 23 $\OMS/cmsy/m/n/9 )$\T1/aett/m/it/9 spli
+t.new $\OMS/cmsy/m/n/9 $\T1/aett/m/it/9 head
+ []
+
+
+Overfull \hbox (32.11128pt too wide) in paragraph at lines 666--673
+[]\T1/aer/m/n/9 Lemma 9[] af-firms $\OMS/cmsy/m/n/9 :$ \T1/aett/m/n/9 all-stole
+n \T1/aer/m/n/9 holds when \T1/aett/m/n/9 grow_shared
+ []
+
+[6]
+Underfull \hbox (badness 10000) in paragraph at lines 675--677
+[]\T1/aett/m/n/9 grow_shared(split, head): pos-nat =
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 675--677
+\T1/aett/m/n/9 lem_incr_split: LEMMA split <= head IM-PLIES
+ []
+
+
+Overfull \hbox (47.61407pt too wide) in paragraph at lines 686--687
+\T1/aer/m/n/9 re-turns true. By adding lem-mas \T1/aett/m/n/9 all-stolen_set \T
+1/aer/m/n/9 and \T1/aett/m/n/9 o_allstolen_set
+ []
+
+
+Overfull \hbox (11.28888pt too wide) in paragraph at lines 697--698
+\T1/aett/m/it/9 (tail.new < tail.old \T1/aer/m/it/9 and \T1/aett/m/it/9 tail.ol
+d-tail.new $\OMS/cmsy/m/n/9 $ \T1/aett/m/it/9 #pop()) 
+ []
+
+
+Overfull \hbox (23.0541pt too wide) in paragraph at lines 720--722
 []\T1/aett/m/it/9 head.new = head.old - 1 \T1/aer/m/it/9 and \T1/aett/m/it/9 po
 p() = STOLEN
  []
 
 
-Overfull \hbox (12.30624pt too wide) in paragraph at lines 605--608
+Overfull \hbox (12.30624pt too wide) in paragraph at lines 724--727
 \T1/aett/m/n/9 head \T1/aer/m/n/9 is decre-mented and \T1/aett/m/n/9 STOLEN \T1
 /aer/m/n/9 is re-turned if the if-statement
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 610--613
+Underfull \hbox (badness 10000) in paragraph at lines 729--732
 []\T1/aett/m/n/9 shrink_shared(o_allstolen, all-stolen): bool =
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 610--613
+Underfull \hbox (badness 10000) in paragraph at lines 729--732
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 610--613
+Underfull \hbox (badness 10000) in paragraph at lines 729--732
 \T1/aett/m/n/9 pop(head, o_split, o_allstolen, all-stolen):
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 610--613
+Underfull \hbox (badness 10000) in paragraph at lines 729--732
 \T1/aett/m/n/9 bool = NOT (head = 0) AND (o_allstolen OR
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 610--613
+Underfull \hbox (badness 10000) in paragraph at lines 729--732
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 610--613
+Underfull \hbox (badness 10000) in paragraph at lines 729--732
 \T1/aett/m/n/9 lem_allstolen: LEMMA pop(head, o_split,
  []
 
 
-Overfull \hbox (12.36162pt too wide) in paragraph at lines 629--632
+Overfull \hbox (12.36162pt too wide) in paragraph at lines 748--751
 \T1/aer/m/n/9 vari-able is \T1/aett/m/n/9 false \T1/aer/m/n/9 when the method i
 s in-voked. \T1/aett/m/n/9 shrink_shared
  []
 
-[6]
-Overfull \hbox (8.41107pt too wide) in paragraph at lines 670--672
-[]\T1/aett/m/it/9 min(linearisation point 30, lin-eari-sa-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 682--686
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 682--686
-\T1/aett/m/n/9 lem_decr_a: LEMMA NOT tail = split AND tail <
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 682--686
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 682--686
-\T1/aett/m/n/9 lem_decr_b: LEMMA NOT tail = split AND t >
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 682--686
-\T1/aett/m/n/9 decr_tail(tail,split) AND t < split IM-PLIES
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 682--686
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 682--686
-\T1/aett/m/n/9 lem_decr_c: LEMMA NOT tail = split AND tail
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 682--686
-\T1/aett/m/n/9 < split AND t > decr_tail(tail, split) AND
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 682--686
-\T1/aett/m/n/9 t < split IM-PLIES decr_tail(tail, split) <=
- []
-
-
-Overfull \hbox (4.26031pt too wide) in paragraph at lines 702--703
+[7]
+Overfull \hbox (4.26031pt too wide) in paragraph at lines 765--766
 \T1/aer/m/n/9 ther-more, Fig-ure 6[] \T1/aett/m/n/9 states that af-ter the that
  is tail
  []
 
 
 ("C:\Users\Thijs\Documents\Universiteit Twente\Bachelor Thesis\Thesis\Thesis.bb
-l" [7]) [8]
+l") [8] [9
+
+]
 ("C:\Users\Thijs\Documents\Universiteit Twente\Bachelor Thesis\Thesis\Thesis.au
 x") ) 
 Here is how much of TeX's memory you used:
- 4841 strings out of 493921
- 67878 string characters out of 3149287
- 238991 words of memory out of 3000000
- 8053 multiletter control sequences out of 15000+200000
+ 4844 strings out of 493921
+ 67913 string characters out of 3149287
+ 236016 words of memory out of 3000000
+ 8056 multiletter control sequences out of 15000+200000
  56948 words of font info for 82 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
  41i,10n,38p,1189b,996s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -682,9 +767,9 @@ nts/cm/cmtt9.pfb><C:/Program Files/LaTeX/fonts/type1/urw/helvetic/uhvb8a.pfb><C
 :/Program Files/LaTeX/fonts/type1/urw/helvetic/uhvr8a.pfb><C:/Program Files/LaT
 eX/fonts/type1/urw/times/utmb8a.pfb><C:/Program Files/LaTeX/fonts/type1/urw/tim
 es/utmr8a.pfb><C:/Program Files/LaTeX/fonts/type1/urw/times/utmri8a.pfb>
-Output written on Thesis.pdf (8 pages, 298006 bytes).
+Output written on Thesis.pdf (9 pages, 302492 bytes).
 PDF statistics:
- 88 PDF objects out of 1000 (max. 8388607)
+ 91 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  11 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -450,84 +450,15 @@ Note that the linearisation points modified by thieving threads through the meth
 Since these occur at arbitrary points in the algorithm, it does not make sense to include them in a flow chart.
 
 \section{Proving Lace}
-\begin{lemma}
-	\texttt{head $\leq$ size}.
-	\label{lem:headsize}
-\end{lemma}
-\begin{proof}
-	Table \ref{tab:head} indicates \texttt{head} is only increased at method \texttt{push}.
-	This indicates there is no need to take the reordering of loads before stores into account, since only one thread operates on this variable.
-	Since it is assumed \texttt{head} = 0 at the start of the algorithm, i.e. \texttt{head} < \texttt{size}, it is left to prove the linearisation point cannot be reached if \texttt{head $\geq$ size}.
-	In PVS we input the code as depicted in Figure \ref{pvs:head}.
-	To proof lemma \texttt{lemma\_head}, we use axioms \texttt{head\_start}, stating \texttt{head} < \texttt{size} at the initialisation, and \texttt{head\_size} stating \texttt{head $\neq$ size}, i.e. line 11 of Lace.
-	Then, we expand function \texttt{incr\_head(head)}, which increases \texttt{head} by 1, i.e. line 13 of Lace.
-	Then using PVS' grind option, it concludes that indeed the lemma holds.
-\end{proof}
-\begin{figure}[h]
-	\texttt{head\_start: AXIOM head < size}\\
-	\texttt{head\_size: AXIOM NOT (head = size)}\\
-	\texttt{incr\_head(head): posnat = head+1}\\
-	\texttt{lemma\_head: LEMMA incr\_head(head) <= size}
-	\caption{PVS proof of head $\leq$ size}
-	\label{pvs:head}
-\end{figure}
-
-\begin{lemma}
-	\texttt{head $\geq$ 0}
-	\label{lem:headzero}
-\end{lemma}
-\begin{proof}
-	Table \ref{tab:head} indicates \texttt{head} is only decreased at the method \texttt{pop}.
-	As with Lemma \ref{lem:headsize}, the reordering of loads before stores does not need to be taken into account, since the owner thread is the only thread operating on this variable.
-	From the flow diagram we find that to reach a linearisation point where \texttt{head} is decreased, \texttt{head $\neq$ 0}.
-	In PVS we input the code as depicted in Figure \ref{pvs:headzero}.
-	Here we use the axiom \texttt{head\_start} to denote that the starting position of \texttt{head} is 0, or in this case $\geq$ 0.
-	The axiom \texttt{head\_zero} states, \texttt{head} $\neq$ 0, as line 43 of Lace indicates.
-	To proof \texttt{lemma\_head}, we introduce both axioms and expand the method \texttt{decr\_head} after which we use PVS' grind option.
-	This concludes that indeed the lemma holds.
-\end{proof}
-\begin{figure}[h]
-	\texttt{head\_start: AXIOM head >= 0}\\
-	\texttt{head\_zero: AXIOM NOT (head = 0)}\\
-	\texttt{decr\_head(head): posnat = head-1}\\
-	\texttt{lemma\_head: LEMMA func\_decr(head) >= 0}
-	\caption{PVS proof of head $\geq$ 0}
-	\label{pvs:headzero}
-\end{figure}
-
-\begin{lemma}
-	\texttt{$\neg$ allstolen $\Rightarrow$ tail $\leq$ split $\leq$ head}
-	\label{lem:allst.var}
-\end{lemma}
-\begin{proof}
-	This paper assumes that the deque is initialised with \texttt{tail = split = head = 0} and \texttt{$\neg$ allstolen}, hence, the lemma holds at at initialisation.
-	Table \ref{tab:allst} indicates \texttt{allstolen} is only reset at linearisation point 17.
-	Figure \ref{fig:push} shows linearisation points 15 of \texttt{tail} and \texttt{split} must precede the reset of \texttt{allstolen}, which set \texttt{tail} and \texttt{split} to \texttt{head-1} and \texttt{head} respectively.
-	At this point the lemma still holds, and modifications of \texttt{head, tail,} and \texttt{split} need be scrutinised.
-	First of all we note that \texttt{tail} might be modified in between linearisation points 15 and linearisation point 17.
-	%TODO!!!!
-	
-	Table \ref{tab:tail} demonstrates variable \texttt{tail} is modified at linearisation point 5 and 15.
-	Lemma \ref{lem:incrtail} states that for linearisation point 5 to execute \texttt{t < s} and \texttt{t == tail} and \texttt{s = split}.
-	When modeling this in PVS as in Figure \ref{pvs:allst.var}, we see that \texttt{tail $\leq$ split} holds.
-	Figure \ref{fig:push} expounds linearisation point 15 cannot be reached if \texttt{$\neg$ o_allstolen}, because Lemma \ref{allstolen} states \texttt{o\_allstolen = allstolen} at load operations, this linearisation point cannot be reached when \texttt{$\neg$ allstolen}.
-	
-	Table \ref{tab:split} indicates \texttt{split} is modified at linearisation points 15, 23, 30, and 36.
-	%TODO verder werken aan INVARIANT 9 Lace paper.
-\end{proof}
-\begin{figure}[h]
-	\texttt{incr\_tail(tail): posnat = tail+1}\\
-	\texttt{lem\_tail: LEMMA tail < split IMPLIES incr\_tail(tail) <= split}
-	\caption{PVS proof of Lemma \ref{lem:allst.var}}
-	\label{pvs:allst.var}
-\end{figure}
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%				allstolen = o_allstolen					%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{lemma}
 	\texttt{allstolen = o\_allstolen} at load operations.
 	\label{lem:allstolen}
 \end{lemma}
 \begin{proof}
-	Table \ref{tab:allst} and \ref{tab:oallst} indicate that both \texttt{allstolen} variables only change through methods \texttt{push} and \texttt{shrink\_shared}.
+	Table \ref{tab:allst} and \ref{tab:oallst} indicate that both \texttt{allstolen} variables only change through methods \texttt{push} and \texttt{shrink\_-\\shared}.
 	Figure \ref{fig:push} states that private variable \texttt{o\_split} is the only variable to change in between the modifications to false of the \texttt{allstolen} variables.
 	Subsequently, Figure \ref{fig:pop} states there are no linearisation between the modifications to true at all.
 	There do not occur any load operations of \texttt{allstolen} or \texttt{o\_allstolen} in between either modification of the variables.
@@ -535,6 +466,9 @@ Since these occur at arbitrary points in the algorithm, it does not make sense t
 	The owner thread does not reorder both \texttt{allstolen} variables, because the thread itself is the only thread modifying them.
 \end{proof}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%					split = o_split					%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{lemma}
 	\texttt{split = o\_split} at load operations.
 	\label{lem:split}
@@ -548,6 +482,201 @@ Since these occur at arbitrary points in the algorithm, it does not make sense t
 	The x86 memory model where loads can be reordered before stores is not important for this Lemma, since the method \texttt{steal} only uses \texttt{split}.
 	Whereas the owner thread uses \texttt{o\_split}, but loads cannot be reordered before stores for the thread that executes the stores.		
 \end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%				    0 <= head < size					%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{lemma}
+	\texttt{0 $\leq$ head $\leq$ size}.
+	\label{lem:headsize}
+\end{lemma}
+\begin{proof}
+	Table \ref{tab:head} indicates \texttt{head} is only increased at method \texttt{push} and decreased at the method \texttt{pop}.
+	This indicates there is no need to take the reordering of loads before stores into account, since only one thread operates on this variable.
+	Since we assume \texttt{head} = 0 at the start of the algorithm, i.e. \texttt{0 $\leq$ head < size}, it is left to prove linearisation point 13 cannot increase \texttt{head} beyond \texttt{size}.
+	Subsequently, we prove linearisation points 45 and 47 cannot decrease \texttt{head} to a value lower than 0.
+	In PVS we input the code as depicted in Figure \ref{pvs:head}.
+	To proof lemma \texttt{lemma\_size}, we use axioms \texttt{head\_start}, stating \texttt{head} < \texttt{size} at the initialisation, and \texttt{head\_size} stating \texttt{head $\neq$ size}, i.e. line 11 of Lace.
+	Then, we expand function \texttt{incr\_head(head)}, which increases \texttt{head} by 1, i.e. line 13 of Lace.
+	Then using PVS' grind option, it concludes that indeed the lemma holds.
+	Proving \texttt{head} cannot decrease to a value lower than 0, we use axioms \texttt{head\_start} and \texttt{head\_zero} and prove \texttt{lemma\_zero} using PVS' grind option.
+	This concludes that the lemma holds.
+\end{proof}
+\begin{figure}[h]
+	\texttt{head\_start: AXIOM head >= 0 AND head < size}\\
+	\texttt{head\_zero:  AXIOM NOT (head = 0)}\\
+	\texttt{head\_size:  AXIOM NOT (head = size)}\\\\
+	\texttt{incr\_head(head): posnat = head+1}\\
+	\texttt{decr\_head(head): posnat = head-1}\\\\
+	\texttt{lemma\_size: LEMMA incr\_head(head) <= size}
+	\texttt{lemma\_zero: LEMMA decr\_head(head) >= 0}
+	\caption{PVS proof of 0 $\leq$ head $\leq$ size}
+	\label{pvs:head}
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%		  tail+1 ==> !allstolen && t=tail < s=split 			%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{lemma}
+	\texttt{tail.new = tail.old+1 $\Rightarrow$ !allstolen} and \texttt{t < s} and \texttt{t == tail} and \texttt{s == split}
+	\label{lem:incrtail}
+\end{lemma}
+\begin{proof}
+	The only linearisation point where \texttt{tail} is increased is at the \texttt{cas} operation of line 5 as stated in Table \ref{tab:tail}. This modification only succeeds if \texttt{cas} succeeds, i.e. if the compare-and-swap method returns true. Thus this can be modeled in PVS as described in Figure \ref{pvs:tailincr}.
+\end{proof}
+\begin{figure}[h]
+	\texttt{cas(var1, var2, exp1, exp2, val1, val2: posnat) : bool = IF (var1 = exp1 AND var2 = exp2 THEN true ELSE false ENDIF}\\\\
+	\texttt{steal(t, s, tail, split, allstolen): bool = IF allstolen THEN false ELSE (IF t < s THEN cas(t,s,tail,split,(t+1),s) ELSE false ENDIF) ENDIF}\\\\
+	\texttt{lem\_incr\_tail: LEMMA (NOT allstolen AND t < s AND t = tail AND s = split) IMPLIES steal(t,s,tail,split,allstolen) = true}\\
+	\texttt{lem\_incr\_tail: LEMMA NOT (NOT allstolen AND t < s AND t = tail AND s = split) IMPLIES steal(t,s,tail,split,allstolen) = false}
+	\caption{PVS proof of incrementing tail}
+	\label{pvs:tailincr}
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%	      Linearisation point 30 => split.new <= split.old 	 	%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{lemma}
+	Linearisation point 30 $\Rightarrow$ \texttt{split.new $\leq$\\ split.old}
+	\label{lem:lin30}
+\end{lemma}
+\begin{proof}
+	Lemma \texttt{lem\_decr\_a} in Figure \ref{pvs:decrtail} corresponds to line 30 of Lace and states that \texttt{decr\_tail} $\leq$ \texttt{split}, under the assumptions that \texttt{tail != split} and \texttt{tail < split}.
+	The former assumption is valid since Figure \ref{fig:pop} states the variables \texttt{tail} and \texttt{split} are not equal when linearisation point 30 occurs and the read variables \texttt{tail} and \texttt{split} are not modified in between.
+	The latter assumption is valid since Lemma \ref{lem:incrtail} states \texttt{tail} cannot increase if \texttt{tail $\geq$ split} and at the start of Lace \texttt{tail == split == 0}.
+	Using PVS' grind option, this Lemma is proven correct.
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%	      Linearisation point 36 => split.new <= split.old 	 	%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{lemma}
+	Linearisation point 36 $\Rightarrow$ \texttt{split.new $\leq$ \\split.old} where \texttt{split.old} is before Linearisation point 30. 
+	\label{lem:lin36}
+\end{lemma}
+\begin{proof}
+	Lemma \texttt{lem\_decr\_b} in Figure \ref{pvs:decrtail} corresponds to the linearisation point of line 36 of Lace and states that after the linearsation point of line 30, line 36 can increase \texttt{split}, but not beyond the point of \texttt{split.old}, i.e. \texttt{split} before the linearisation point of line 30.
+	It assumes \texttt{tail != split} and \texttt{t > decr\_tail(tail,split)} and \texttt{t < split}.
+	The first of these assumptions is true according to Figure \ref{fig:pop}, it shows \texttt{t != s} is a requirement for reaching linearisation point 36.
+	Since \texttt{tail} is reread at line 32, but \texttt{split} is equal to the value read at line 27 this assumption still holds.
+	The second assumption is valid since Figure \ref{fig:pop} expounds \texttt{t > new\_s} for linearisation point 36 to be reached.
+	That is, the newly read value of \texttt{tail} here modeled as \texttt{t} is larger than the computed value of \texttt{split} at linearisation point 30.
+	Note that the newly read value of \texttt{tail} cannot increase any further, since the memory fence of line 31 asserts the modification of \texttt{split} is globally visible.
+	Any reordering of read and write operations as the x86 memory model allow do not apply in this part of the code since the memory fence forces global visibility.
+	The final assumption of \texttt{t < split} is true since Lemma \ref{lem:incrtail} affirms \texttt{tail} cannot increase unless it is smaller than \texttt{split}.
+	With these assumptions, PVS shows that indeed the newly computed value of \texttt{split.new $\leq$ split.old}.
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%			Global visibility min(lin 30, lin 36)			 	%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{lemma}
+	\texttt{min(linearisation point 30, linearisation point 36)} is globally visible.
+	\label{lem:lin3036}
+\end{lemma}
+\begin{proof}
+	Lemma \texttt{lem\_decr\_c} in Figure \ref{pvs:decrtail} insists linearisation point 36 cannot decrease with respect to linearisation point 30.
+	Here the assumptions of \texttt{lem\_decr\_a} and \texttt{lem\_decr\_b} are both needed to prove the lemma correct.
+	PVS proves that the minimum value of split after linearisation point 30 and linearisation point 36 is linearisation point 30.
+	This change is visible because of the memory fence of line 31.
+	No memory fence is needed for linearisation point 36, since stealing threads cannot abuse this modification because \texttt{split.old $\leq$ tail.new}.
+	Therefore stealing threads cannot steal more because of the modification.	
+\end{proof}
+\begin{figure}[h]
+	\texttt{decr\_tail(tail, split): posnat = (tail+split)/2}\\\\
+	\texttt{lem\_decr\_a: LEMMA NOT tail = split AND tail < split IMPLIES decr\_tail(tail,split) <= split}\\\\
+	\texttt{lem\_decr\_b: LEMMA NOT tail = split AND t > decr\_tail(tail,split) AND t < split IMPLIES decr\_tail(t, split) <= split}\\\\
+	\texttt{lem\_decr\_c: LEMMA NOT tail = split AND tail < split AND t > decr\_tail(tail, split) AND t < split IMPLIES decr\_tail(tail, split) <= decr\_tail(t, split)}
+	\caption{PVS proof of Lemmas \ref{lem:lin30}, \ref{lem:lin36}, and \ref{lem:lin3036}. Method decr\_tail returns the modified value of tail. lem\_decr\_a is used in Lemma \ref{lem:lin30}, lem\_decr\_b is used in Lemma \ref{lem:lin36}, and lem\_decr\_c is used in Lemma \ref{lem:lin3036}. Variables tail and split correspond to the variables read at line 27 of Lace, variable t corresponds to the newly read variable tail at line 32 of Lace.}
+	\label{pvs:decrtail}
+\end{figure}
+
+\begin{lemma}
+	\texttt{$\neg$ allstolen $\Rightarrow$ tail $\leq$ split $\leq$ head}
+	\label{lem:allst.var}
+\end{lemma}
+\begin{proof}
+	This paper assumes that the deque is initialised with \texttt{tail = split = head = 0} and \texttt{$\neg$ allstolen}, hence, the lemma holds at at initialisation.
+	Table \ref{tab:allst} indicates \texttt{allstolen} is only reset at linearisation point 17.
+	Figure \ref{fig:push} shows linearisation points 15 of \texttt{tail} and \texttt{split} must precede the reset of \texttt{allstolen}, which set \texttt{tail} and \texttt{split} to \texttt{head-1} and \texttt{head} respectively.
+	At this point the lemma still holds, and modifications of \texttt{head, tail,} and \texttt{split} need be scrutinised.
+	First of all we note that \texttt{tail} might be modified in between linearisation points 15 and linearisation point 17.
+	However, \texttt{tail} will never increase beyond \texttt{split} because of the condition \texttt{t < s} described in Lemma \ref{lem:incrtail}.
+	
+	Table \ref{tab:tail} demonstrates variable \texttt{tail} is modified at linearisation point 5 and 15.
+	Lemma \ref{lem:incrtail} states that for linearisation point 5 to execute \texttt{t < s} and \texttt{t == tail} and \texttt{s = split}.
+	When modeling this in PVS as in Figure \ref{pvs:allst.var}, we see that \texttt{tail $\leq$ split} holds.
+	Figure \ref{fig:push} expounds linearisation point 15 cannot be reached if \texttt{$\neg$ o\_allstolen}, because Lemma \ref{lem:allstolen} states \texttt{o\_allstolen = allstolen} at load operations, this linearisation point cannot be reached when \texttt{$\neg$ allstolen}.
+	
+	Table \ref{tab:split} indicates \texttt{split} is modified at linearisation points 15, 23, 30, and 36.
+	As with linearisation point 15 of \texttt{tail}, linearisation point 15 is unreachable when \texttt{$\neg$ allstolen}.
+	Linearisation point 23 can be reached, Lemma \ref{lem:lin23} states that after this linearisation point \texttt{split $\leq$ head} still holds, using the assumption of this Lemma, that \texttt{$\neg$ allstolen $\Rightarrow$ split $\leq$ head}.
+	Linearisation point 30 may violate the lemma, since \texttt{tail} can grow to the value of \texttt{split.old} and Lemma \ref{lem:lin30} expounds \texttt{split.new $\leq$ split.old} after the modification of linearisation point 30.
+	However, as described in Figure \ref{pvs:allst.var} the linearisation point 36 will restore the value \texttt{split} so that \texttt{tail $\leq$ split} holds.
+	
+	Table \ref{tab:head} states linearisation points 12, 45, and 47 modify \texttt{head}.
+	Of these linearisation points 45 and 47 decrease head and may violate the Lemma, whereas linearisation point 13 increases head posing no danger of violation.
+	Figure \ref{fig:pop} states linearisation point 45 is reached, only if \texttt{o\_allstolen} is set, since \texttt{o\_allstolen} cannot be altered by any other than the owner thread according to Table \ref{tab:allst}.
+	Combined with Lemma \ref{lem:allstolen}, this linearisation point cannot be reached unless \texttt{allstolen} is set, thus this Lemma is not applicable to the linearisation point.
+	Contrary, linearisation point 47 can still be reached.
+	In this case, \texttt{shrink\_shared} must have returned \texttt{false}, indicating that \texttt{split < head} (Lemma \ref{lem:shrsh.var}).
+	With this assumption we prove in PVS that \texttt{split $\leq$ head-1} still holds.
+	This is done in Figure \ref{pvs:allst.var}, at \texttt{lem\_head}, and proven using PVS' grind option.
+	
+	This proves that for all linearisation points modifying \texttt{tail, split,} and \texttt{head} the Lemma still holds.
+\end{proof}
+\begin{figure}[h]
+	\texttt{incr\_tail(tail): posnat = tail+1}\\
+	\texttt{lem\_tail: LEMMA tail < split IMPLIES incr\_tail(tail) <= split}\\\\	
+	\texttt{decr\_tail(tail,split): posnat = (tail+split)/2}\\
+	\texttt{lem\_split: LEMMA NOT tail = split AND t > decr\_tail(tail, split) AND t < split IMPLIES decr\_tail(t, split) > t}\\\\
+	\texttt{decr\_head(head): posnat = head-1}\\
+	\texttt{lem\_head: LEMMA split < head IMPLIES split <= decr\_head(head)}
+	\caption{PVS proof of Lemma \ref{lem:allst.var}}
+	\label{pvs:allst.var}
+\end{figure}
+
+\begin{lemma}
+	\texttt{grow\_shared $\Rightarrow \neg$ allstolen}
+	\label{lem:grshr}
+\end{lemma}
+\begin{proof}
+	Figure \ref{fig:pop} specifies that \texttt{grow\_shared}, represented by linearisation point 23, can only be reached if \texttt{$\neg$ o\_allstolen}.
+	Furthermore, it shows no linearisation points modifying \texttt{o\_allstolen} occur after \texttt{o\_allstolen} is checked.
+	Table \ref{tab:allst} and \ref{tab:oallst} state both variables can only be changed by the owner thread.
+	In combination with Lemma \texttt{lem:allstolen} we conclude that an invokation of \texttt{grow\_shared} $\Rightarrow \neg$ \texttt{allstolen}.
+\end{proof}
+
+\begin{lemma}
+	\texttt{shrink\_shared} returns \texttt{false} and \texttt{tail $\leq$ head} $\Rightarrow$ \texttt{tail $\leq$ split < head}.
+	\label{lem:shrsh.var}
+\end{lemma}
+\begin{proof}
+	Figure \ref{fig:pop} affirms \texttt{shrink\_shared} (represented by linearisation points 30, 36, and 37) is only called if \texttt{o\_split = split = head} (Lemma \ref{lem:split}).
+	Furthermore, the Figure states \texttt{shrink\_shared} only returns \texttt{false} if \texttt{t != s}, i.e. \texttt{tail $\neq$ head}, since \texttt{split = head} and there occur no modifications to either variables in the meantime.
+	Lemmas \ref{lem:lin30} and \ref{lem:lin36} state \texttt{tail} can only decrease at these points. 
+	Combined with the assumption that \texttt{split $\neq$ head} it follows that \texttt{tail $\leq$ split < head}.
+\end{proof}
+
+\begin{lemma}
+	Linearisation point 23 $\Rightarrow$\texttt{split.new $\leq$head}
+	\label{lem:lin23}
+\end{lemma}
+\begin{proof}
+	Lemma \ref{lem:grshr} affirms $\neg$ \texttt{allstolen} holds when \texttt{grow\_shared} is invoked.
+	Table \ref{tab:allst} shows \texttt{allstolen} is altered between the invocation of \texttt{grow\_shared} and linearisation point 23.
+	In combination with the assumption of Lemma \ref{lem:allst.var} that \texttt{tail $\leq$ head} we can model the linearisation point in PVS and proof that this Lemma holds.
+	Figure \ref{pvs:lin23} contains the PVS code used to proof this Lemma.
+	Note how the function \texttt{grow\_shared} adds 2 to \texttt{split+head} instead of 1 and how it subtracts 1 after the division.
+	This is to cope with rounding the resulting integer down as Lace does.
+	Using PVS' grind option lemma \texttt{lem\_incr\_split} is proven and thus Lemma \ref{lem:lin23} holds.
+\end{proof}
+\begin{figure}[h]
+	\texttt{grow\_shared(split, head): posnat = ((split+head+2)/2)-1}\\
+	\texttt{lem\_incr\_split: LEMMA split <= head IMPLIES grow\_shared(split, head) <= head}
+	\caption{PVS proof of Lemma \ref{lem:lin23}.}
+	\label{pvs:lin23}
+\end{figure}
 
 \begin{lemma}
 	\texttt{shrink\_shared} returns \texttt{True} $\Rightarrow$ \texttt{allstolen} and \texttt{o\_allstolen}.
@@ -572,6 +701,8 @@ Since these occur at arbitrary points in the algorithm, it does not make sense t
 	The second part states, that if \texttt{tail} is decreased, the method \texttt{pop} must have returned \texttt{STOLEN} and on modification, \texttt{tail.old} must have been equal to \texttt{head}.
 	The only possibility for \texttt{tail} to decrease is at line 15 of Lace, where it is set to \texttt{head-1}, see Table \ref{tab:tail}.
 	As Figure \ref{fig:push} shows the linearisation point of line 15 can only be reached if \texttt{o\_allstolen} is set.
+	%TODO
+	Subsequently, Lemma \ref{lem:popstolen} implies \texttt{allstolen} is set for \texttt{head} to decrease by one and \texttt{pop} a \texttt{STOLEN} task.
 	
 \end{proof}
 
@@ -583,24 +714,11 @@ Since these occur at arbitrary points in the algorithm, it does not make sense t
 	Figure \ref{fig:pop} shows it is impossible to go from linearisation point 45 to 47 or vise versa. Furthermore, the Figure shows both linearisation points are the first possible end states to reach. However, the Figure does state that neither linearisation points are reached when \texttt{head == 0}. Though this is not aplicable to this situation since we assume the number of \texttt{pop} calls never exceed the number of \texttt{push} calls. Therefore \texttt{pop() $\Rightarrow$ head.new = head.old -1} holds.
 \end{proof}
 
-\begin{lemma}
-	\texttt{tail.new = tail.old+1 $\Rightarrow$ !allstolen} and \texttt{t < s} and \texttt{t == tail} and \texttt{s == split}
-	\label{lem:incrtail}
-\end{lemma}
-\begin{proof}
-	The only linearisation point where \texttt{tail} is increased is at the \texttt{cas} operation of line 5 as stated in Table \ref{tab:tail}. This modification only succeeds if \texttt{cas} succeeds, i.e. if the compare-and-swap method returns true. Thus this can be modeled in PVS as described in Figure \ref{pvs:tailincr}.
-\end{proof}
-\begin{figure}[h]
-	\texttt{cas(var1, var2, exp1, exp2, val1, val2: posnat) : bool = IF (var1 = exp1 AND var2 = exp2 THEN true ELSE false ENDIF}\\\\
-	\texttt{steal(t, s, tail, split, allstolen): bool = IF allstolen THEN false ELSE (IF t < s THEN cas(t,s,tail,split,(t+1),s) ELSE false ENDIF) ENDIF}\\\\
-	\texttt{lem\_incr\_tail: LEMMA (NOT allstolen AND t < s AND t = tail AND s = split) IMPLIES steal(t,s,tail,split,allstolen) = true}\\
-	\texttt{lem\_incr\_tail: LEMMA NOT (NOT allstolen AND t < s AND t = tail AND s = split) IMPLIES steal(t,s,tail,split,allstolen) = false}
-	\caption{PVS proof of incrementing tail}
-	\label{pvs:tailincr}
-\end{figure}
+
 
 \begin{lemma}
 	\texttt{head.new = head.old - 1} and \texttt{pop() = STOLEN $\Rightarrow$ \texttt{allstolen}}
+	\label{lem:popstolen}
 \end{lemma}
 \begin{proof}
 	Figure \ref{fig:pop} illustrates \texttt{pop = STOLEN} in combination with the decrement of \texttt{head} as linearisation point 45, which can only be reached if \texttt{o\_allstolen} or (\texttt{o\_split == head} and \texttt{shrink\_shared = true}.
@@ -633,66 +751,10 @@ Since these occur at arbitrary points in the algorithm, it does not make sense t
 \end{proof}
 
 \begin{lemma}
-	Linearisation point 23 $\Rightarrow$ \texttt{split.new $\geq$\\ split.old}
-\end{lemma}
-\begin{proof}
-	
-\end{proof}
-
-\begin{lemma}
-	Linearisation point 30 $\Rightarrow$ \texttt{split.new $\leq$\\ split.old}
-	\label{lem:lin30}
-\end{lemma}
-\begin{proof}
-	Lemma \texttt{lem\_decr\_a} in Figure \ref{pvs:decrtail} corresponds to line 30 of Lace and states that \texttt{decr\_tail} $\leq$ \texttt{split}, under the assumptions that \texttt{tail != split} and \texttt{tail < split}.
-	The former assumption is valid since Figure \ref{fig:pop} states the variables \texttt{tail} and \texttt{split} are not equal when linearisation point 30 occurs and the read variables \texttt{tail} and \texttt{split} are not modified in between.
-	The latter assumption is valid since Lemma \ref{lem:incrtail} states \texttt{tail} cannot increase if \texttt{tail $\geq$ split} and at the start of Lace \texttt{tail == split == 0}.
-	Using PVS' grind option, this Lemma is proven correct.
-\end{proof}
-
-\begin{lemma}
-	Linearisation point 36 $\Rightarrow$ \texttt{split.new $\leq$ \\split.old} where \texttt{split.old} is before Linearisation point 30. 
-	\label{lem:lin36}
-\end{lemma}
-\begin{proof}
-	Lemma \texttt{lem\_decr\_b} in Figure \ref{pvs:decrtail} corresponds to the linearisation point of line 36 of Lace and states that after the linearsation point of line 30, line 36 can increase \texttt{split}, but not beyond the point of \texttt{split.old}, i.e. \texttt{split} before the linearisation point of line 30.
-	It assumes \texttt{tail != split} and \texttt{t > decr\_tail(tail,split)} and \texttt{t < split}.
-	The first of these assumptions is true according to Figure \ref{fig:pop}, it shows \texttt{t != s} is a requirement for reaching linearisation point 36.
-	Since \texttt{tail} is reread at line 32, but \texttt{split} is equal to the value read at line 27 this assumption still holds.
-	The second assumption is valid since Figure \ref{fig:pop} expounds \texttt{t > new\_s} for linearisation point 36 to be reached.
-	That is, the newly read value of \texttt{tail} here modeled as \texttt{t} is larger than the computed value of \texttt{split} at linearisation point 30.
-	Note that the newly read value of \texttt{tail} cannot increase any further, since the memory fence of line 31 asserts the modification of \texttt{split} is globally visible.
-	Any reordering of read and write operations as the x86 memory model allow do not apply in this part of the code since the memory fence forces global visibility.
-	The final assumption of \texttt{t < split} is true since Lemma \ref{lem:incrtail} affirms \texttt{tail} cannot increase unless it is smaller than \texttt{split}.
-	With these assumptions, PVS shows that indeed the newly computed value of \texttt{split.new $\leq$ split.old}.
-\end{proof}
-
-\begin{lemma}
-	\texttt{min(linearisation point 30, linearisation point 36)} is globally visible.
-	\label{lem:lin3036}
-\end{lemma}
-\begin{proof}
-	Lemma \texttt{lem\_decr\_c} in Figure \ref{pvs:decrtail} insists linearisation point 36 cannot decrease with respect to linearisation point 30.
-	Here the assumptions of \texttt{lem\_decr\_a} and \texttt{lem\_decr\_b} are both needed to prove the lemma correct.
-	PVS proves that the minimum value of split after linearisation point 30 and linearisation point 36 is linearisation point 30.
-	This change is visible because of the memory fence of line 31.
-	No memory fence is needed for linearisation point 36, since stealing threads cannot abuse this modification because \texttt{split.old $\leq$ tail.new}.
-	Therefore stealing threads cannot steal more because of the modification.	
-\end{proof}
-\begin{figure}[h]
-	\texttt{decr\_tail(tail, split): posnat = (tail+split)/2}\\\\
-	\texttt{lem\_decr\_a: LEMMA NOT tail = split AND tail < split IMPLIES decr\_tail(tail,split) <= split}\\\\
-	\texttt{lem\_decr\_b: LEMMA NOT tail = split AND t > decr\_tail(tail,split) AND t < split IMPLIES decr\_tail(t, decr\_tail(tail,split)) <= split}\\\\
-	\texttt{lem\_decr\_c: LEMMA NOT tail = split AND tail < split AND t > decr\_tail(tail, split) AND t < split IMPLIES decr\_tail(tail, split) <= decr\_tail(t, decr\_tail(tail,split))}
-	\caption{PVS proof of Lemmas \ref{lem:lin30}, \ref{lem:lin36}, and \ref{lem:lin3036}. Method decr\_tail returns the modified value of tail. lem\_decr\_a is used in Lemma \ref{lem:lin30}, lem\_decr\_b is used in Lemma \ref{lem:lin36}, and lem\_decr\_c is used in Lemma \ref{lem:lin3036}.}
-	\label{pvs:decrtail}
-\end{figure}
-
-\begin{lemma}
 	\texttt{allstolen $\Rightarrow \neg$ tail.new = tail.old + 1}
 \end{lemma}
 \begin{proof}
-	Table\ref{tab:tail} affirms \texttt{tail} can only increase at linearisation point 5 of Lace and Lemma \ref{lem:incrtail} states that \texttt{allstolen} must be false to increase \texttt{tail}.
+	Table \ref{tab:tail} affirms \texttt{tail} can only increase at linearisation point 5 of Lace and Lemma \ref{lem:incrtail} states that \texttt{allstolen} must be false to increase \texttt{tail}.
 	Table \ref{tab:allst} shows that \texttt{allstolen} can only be set to true at line 39 of Lace.	
 	However, the x86 memory model might not have globalised the modification of \texttt{allstolen}, or has globalised the variable after the stealing method checked it.
 	Subsequently, the stealing thread reads \texttt{tail} and \texttt{split} into \texttt{t} and \texttt{s} respectively, and checks whether \texttt{t < s}, a requirement which is also stated in Lemma \ref{lem:incrtail}.
