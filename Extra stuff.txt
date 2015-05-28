@@ -11,4 +11,88 @@ When every task is stolen only once, it means thieving threads can only steal ta
 This is written as an invariant in Figure \ref{inv:stolen}.
 
 
+%HERE!!!
+
+The second step of defining the preconditions of each linearisation point is less trivial and for illustrative purposes they are also deduced manually.
+In this case, the preconditions consist of the state of the system before the linearisation point.
+This can be derived by the variables that are adjusted before the linearisation can occur and that cannot change due to other linearisation points.
+Either because other linearisation points do not modify the variable or because the linearisation points that do modify it do not occur.
+
+\subsection{Preconditions}
+For all initialisation points, some preconditions about the state of the system can be assumed.
+In this section, the preconditions for each initialisation point as described in section \ref{sec:lin} are defined and substantiated.
+
+\subsubsection{Head}
+The first thing to note about \texttt{head} is that it is only modified from within the methods \texttt{push} and \texttt{pop}.
+It is also assumed that these methods are only called from within the owner thread, implying there is no interference on that variable from other threads.
+The first instance of \texttt{head} being modified is at line 13 of the algorithm in the method \texttt{push}.
+Before the modification, line 11 checks whether \texttt{head == size}, if this is the case the method returns \texttt{FULL} and thus will not reach line 13.
+Therefore, at the linearisation point of line 13 it is certain that \texttt{head} does not equal \texttt{size}.
+
+At line 45 in the method \texttt{pop}, \texttt{head} is decremented.
+At line 43 the method checks whether \texttt{head == 0}, if so the method returns.
+In combination with the assumption that the number of pops never exceed the number of pushes, we derive that at this point, head must be larger than 0.
+Because the if statement in line 44 must be true to reach line 45, \texttt{o\_allstolen} is true, or \texttt{o\_split == head} and \texttt{shrink\_shared()} returns true.
+The method \texttt{shrink\_shared} only returns true after it set \texttt{allstolen} and \texttt{o\_allstolen}.
+In combination with the assumption that both of these variables can only be adjusted by the owner thread, these will not change.
+Therefore at the linearisation point of \texttt{head} at line 45, \texttt{o\_allstolen} is set.
+
+At line 47 in \texttt{pop}, \texttt{head} is also decremented.
+When this case appears, \texttt{o\_allstolen} is false and either \texttt{o\_split != head} or \texttt{shrink\_shared} returned false or both.
+From this we conclude that \texttt{o\_allstolen} is not set.
+//TODO check whether all variables needed are covered.
+
+\subsubsection{split}
+As with \texttt{head}, \texttt{split} and \texttt{o\_split} can also only be modified within the methods reachable by the owner, in this case \texttt{push}, \texttt{grow\_} \texttt{shared}, and \texttt{shrink\_shared}.
+At the first linearisation point at line 15, \texttt{o\_allstolen} is set and \texttt{head} $\geq 1$.
+The latter statement is true since the number of \texttt{pop} calls do not exceed the number of \texttt{push} calls, and \texttt{head} is incremented by 1 at line 13.
+
+At the second linearisation point at line 23, \texttt{movesplit} is set.
+Since \texttt{grow\_shared} is only called when movesplit is set and movesplit cannot be unset by any other thread than the owner, 
+
+At the third linearisation point at line 30, \texttt{t} $\neq$ \texttt{s}, note that these are the local values initialised at line 27.
+Thus \texttt{tail} and \texttt{split} can be altered.
+
+The linearisation point at line 36 also implies \texttt{t} $\neq$ \texttt{s}, because of the if-statement at line 33.
+The memory fence at line 31 secures the knowledge that \texttt{tail} is not modified until the memory fence is .
+
+\subsubsection{tail}
+\texttt{tail} is modified by both thieving threads and the owner thread.
+Notably, the first linearisation point of \texttt{tail} is at line 5 of the algorithm, where tail is increased.
+This modification uses the compare-and-swap method, which only executes if the given values are equal.
+In this case the values \texttt{t} and \texttt{s} read at line 3 must be equal to the current values of \texttt{tail} and \texttt{split} respectively.
+If this occurs, it can have two causes: neither values have changed, or the values have changed but are restored to their original state between line 3 and 5 of the algorithm.
+
+At the second linearisation point at line 15, the flag \texttt{o\_allstolen} is set, since this is the only way to reach this part of the code and \texttt{o\_allstolen} is only modified by the owner thread itself.
+Additionally, \texttt{head} is not equal to size, and incremented by 1 relative to line 13.
+
+\begin{table}[h]
+	\begin{subtable}[h]{0.45\textwidth}
+		\centering
+		\begin{tabular}{|l|l|l|}
+			\hline
+			\textbf{lin point} & \textbf{head}  & \textbf{allstolen} \\ \hline
+			13                 & $\neq$ size       &                    \\ \hline
+			45                 & \textgreater 0 & true               \\ \hline
+			47                 & \textgreater 0 & true               \\ \hline
+		\end{tabular}
+		\caption{Preconditions head variable}
+		\label{tab:init.head}
+	\end{subtable}
+	\hfill
+	\begin{subtable}[h]{0.45\textwidth}
+		\centering
+		\begin{tabular}{|l|l|l|l|l|}
+			\hline
+			\textbf{lin point} & \textbf{head} & \textbf{tail}  & \textbf{split} & \textbf{allstolen} \\ \hline
+			5                  &               & t=tail         & s=split        &                    \\ \hline
+			15                 & $\neq$size    & \textgreater 0 & true           & true               \\ \hline
+		\end{tabular}
+		\caption{Preconditions points tail variable}
+		\label{tab:init.tail}
+	\end{subtable}
+	\caption{Full caption}
+\end{table}
+
+
 

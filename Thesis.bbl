@@ -5,10 +5,25 @@ The coq proof assistant.
 \newblock https://coq.inria.fr/what-is-coq.
 \newblock Accessed: 2015-03-29.
 
+\bibitem{eemcs24905}
+A.~{Amighi}, S.~C.~C. {Blom}, S.~{Darabi}, M.~{Huisman}, W.~I. {Mostowski}, and
+  M.~{Zaharieva-Stojanovski}.
+\newblock Verification of concurrent systems with vercors.
+\newblock In M.~{Bernardo}, F.~{Damiani}, R.~{Hahnle}, E.~{Johnsen}, and
+  I.~{Schaefer}, editors, {\em Formal Methods for Executable Software Models -
+  14th International School on Formal Methods for the Design of Computer,
+  Communication, and Software Systems}, volume 8483 of {\em Lecture Notes in
+  Computer Science}, pages 172--216. Springer Verlag, Berlin, June 2014.
+
 \bibitem{badban2005verification}
 B.~Badban, W.~Fokkink, J.F. Groote, J.~Pang, and J.~van~de Pol.
 \newblock Verification of a sliding window protocol in $\mu$crl and pvs.
 \newblock {\em Formal Aspects of Computing}, 17(3):342--388, 2005.
+
+\bibitem{Blumofe1994}
+R.D Blumofe and C.~E. Leiserson.
+\newblock Scheduling multithreaded computations by work stealing.
+\newblock {\em Journal of the AMC (JAMC)}, 46(5):720--748, 1994.
 
 \bibitem{colvin2006formal}
 R.~Colvin, L.~Groves, V.~Luchangco, and M.~Moir.
@@ -42,6 +57,13 @@ John~C Reynolds.
 N.~Shankar.
 \newblock Verification of real-time systems using pvs.
 \newblock In {\em Computer Aided Verification}, pages 280--291. Springer, 1993.
+
+\bibitem{PVSProverGuide}
+N.~Shankar, S.~Owre, J.M. Rushby, and D.W.J. Stringer-Calvert.
+\newblock {\em PVS Prover Guide}.
+\newblock SRI International, Computer Science Laboratory 333 Ravenswood Avenue
+  Menlo Park CA 94025, 2.4 edition, November 2001.
+\newblock http://pvs.csl.sri.com/.
 
 \bibitem{smullyan1995}
 Raymond~M Smullyan.
