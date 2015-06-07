@@ -17,8 +17,9 @@
 
 \newtheorem{definition}{Definition}
 \newtheorem{lemma}{Lemma}
+\newtheorem{invariant}{Invariant}
 
-\title{Proving correctness of Lace using interactive theorem prover tools}
+\title{Certainty in Lockless Concurrent Algorithms: an Informal Proof of Lace}
 \author{
 	\alignauthor
 	Thijs van Ede\\
@@ -33,10 +34,15 @@
 \maketitle
 
 \begin{abstract}
-Interactive theorem prover tools 
+Lockless concurrent programming brings new challenges to the field of program verification.
+These lockless programs require methods such as compare-and-swap and memory fences to ensure correctness.
+However, their unpredictable behaviour in combination with these methods complicates verifying such algorithms.
+We use linearisation points, i.e. the points in time when the state of the system changes, to abstract these methods.
+By deducing the possible ordering of these linearisation points we can predict the possible states of the system and draw conclusions about the scrutinised algorithms.
+This paper uses linearisation points and the data flow of the program to create an informal proof of the Lace\cite{vanDijk2014206} algorithm, which implements a work-stealing method for concurrent programs.
 \end{abstract}
 
-\keywords{interactive theorem prover tool, PVS, Lace, linearisation points, concurrent programming, proof}
+\keywords{Lace, linearisation points, concurrent programming, informal proof}
 
 \section{Introduction}
 Modern day processors' multi-core architecture has increased demand for concurrent programming to fully utilise the processing power.
@@ -58,10 +64,15 @@ With the invariants a comprehensive proof of the Lace algorithm is constructed.
 
 \subsection{Lace}
 Lace is a work stealing algorithm\cite{Blumofe1994} which uses a compare-and-swap operation to steal tasks\cite{vanDijk2014206}.
-Each process in Lace has its own deque, i.e. double-ended queue. A deque can be accessed from both its head and its tail, the process itself operates on the head, whereas stealing processes operate on the tail.
-Besides the deque, a process also holds pointers for the head and tail of the deque, as well as a pointer for a split point.
-This split point indicates whether a thief process can steal a task or not, i.e. what part of the deque is shared and what part is private.
-When the tail is still lower than the split point, thief processes are allowed to steal this task.
+Work stealing algorithms dynamically execute multi-threaded computations.
+In this context, each thread is called a worker.
+These workers are able to spawn new computational tasks and execute them.
+When a worker has got no work of its own it attempts to steal a task from other workers, thereby becoming a thieving thread.
+Each worker in Lace has its own deque, i.e. double-ended queue.
+A deque can be accessed from both its head and its tail, the process itself operates on the head, whereas stealing threads operate on the tail.
+Besides the deque, a worker also holds pointers for the head and tail of the deque, as well as a pointer for a split point.
+This split point indicates whether a thieving thread can steal a task or not, i.e. what part of the deque is shared and what part is private.
+When the tail is still lower than the split point, thieving threads are allowed to steal this task.
 Conversely, when the tail increases beyond the split point thief processes may not steal the task.
 Figure \ref{fig:deq} illustrate the workings of this deque with its head, tail, and split variables.
 \begin{figure}[h]
@@ -123,30 +134,57 @@ First of all, we have four ways of classifying a task.
 \begin{definition}A task x is stolen $\iff$ x < \texttt{tail}\end{definition}
 \begin{definition}A task x is shared $\iff$ x < \texttt{split}\end{definition}
 \begin{definition}A task x is private $\iff$ x $\geq$ \texttt{split}\end{definition}
-In proving Lace correct, this paper assumes there is only one owner thread per deque and a possibly infinite number of thieving threads.
-In practice there are more than one owner threads since there are multiple deques.
-However, the proof of correctness for one deque is equivalent to all other deques, i.e. we assume that owner threads are not influenced by each other, only by thieving threads.
-The second assumption is that thieving threads only call \texttt{steal} and the owner threads only calls \texttt{push}  and \texttt{pop}.
-This implies that the owner thread is also the only thread that has access to \texttt{grow\_shared}  and \texttt{shrink\_shared}, since they are only called in \texttt{push} and \texttt{pop}.
-In addition, this paper assumes the number of calls to \texttt{pop} is equal to the number of calls to \texttt{push} when the algorithm finished executing. I.e. the deque is empty when the program finished.
-Finally, all deque values - i.e. tail, split, head, and the entries within the deque - are all set to zero when the deque is initialised.
+In proving Lace correct, this paper assumes there are N workers, each executing a single thread.
+Initially, all deques , as well as their \texttt{head, tail,} and \texttt{split} variables are set to 0.
+One worker starts with a single task in its deque, i.e. \texttt{head} = 1, whereas the other N-1 workers have no tasks to execute and are therefore stealing threads.
+This worker thread is able to spawn tasks using the \texttt{spawn} method in Figure \ref{fig:assumption.code}.
+When a worker thread requires the result of a task, it synchronises using the \texttt{sync} method in Figure \ref{fig:assumption.code}, thereby popping the method from its deque.
+Since a task spawns other tasks it has to synchronise all tasks before returning, therefore we assume that the number of spawns $\geq$ number of syncs and at the end of each task the number of spawns = number of syncs.
+Conversely, stealing threads try to steal tasks from working threads using the forever loop on top of Figure \ref{fig:assumption.code}.
+When stealing threads have successfully stolen a task, they become working threads as well, spawning their own tasks.
+If a thread runs out of tasks to complete, it becomes a thieving thread executing the thieving loop.
 \begin{figure}[h]
-	\begin{enumerate}
-		\setlength{\itemsep}{-3pt}
-		\item One owner thread per deque.
-		\item Possibly infinite number of thieving threads per deque.
-	
-		\item \texttt{steal} is only called by thieving threads.
-		\item \texttt{push} and \texttt{pop} are only called by owner thread.
-		\item Owner thread only calls \texttt{grow\_shared} and \texttt{shrink\_shared}.
-	
-		\item Number of \texttt{pop} calls $\leq$ number of \texttt{push} calls.
-		\item When finished, number of \texttt{pop} calls = number of \texttt{push} calls.
-	
-		\item On initialisation all deque variables are set to zero.
-	\end{enumerate}
-	\caption{Assumed properties of Lace}
+\begin{lstlisting}
+  thief: forever: {
+    status, Task = steal_from_queue()
+    if status == stolen
+      Task.result = Task.call()
+    Task.done = true
+  }
+
+  spawn(function, paramters){
+    push(Task(function, parameters))
+  }
+
+  sync(){
+    status, Task = peek()
+    if status is Stolen:
+      wait until Task.done == true
+      res = Task.result
+      pop()
+    else:
+      pop()
+      res = Task.call()
+    return res
+  }
+\end{lstlisting}
+\caption{The assumed algorithm threads use to steal, spawn, and synchronise tasks respectively.}
+\label{fig:assumption.code}
 \end{figure}
+The assumptions below follow from the statement that methods of Lace are called by the program described above and illustrated in Figure \ref{fig:assumption.code}.
+\begin{enumerate}
+	\setlength{\itemsep}{-3pt}
+	\item One owner thread per deque.
+	\item 0 to N-1 stealing threads per deque.
+	
+	\item \texttt{steal} is only called by thieving threads.
+	\item \texttt{push} and \texttt{pop} are only called by owner thread.
+
+	\item Number of \texttt{pop} calls $\leq$ number of \texttt{push} calls.
+	\item When finished, number of \texttt{pop} calls = number of \texttt{push} calls.
+	
+	\item On initialisation all deque variables are set to zero.
+\end{enumerate}
 
 \subsection{Required properties}
 Lace requires some properties to work correctly.
@@ -163,11 +201,11 @@ Furthermore, a task must be stolen only once, and executed exactly once.
 To prove these properties, they are written as invariants.
 When every task is stolen only once, it means thieving threads can only steal tasks $\geq$ \texttt{tail} and that when tail reduces, a task cannot be stolen again. The former part of the property is trivial, if tail increases it steals an unstolen task which is consistent with the requirement. The latter part is less trivial, if tail reduces, a stolen task cannot be executed again, therefore the stolen tasks need to be removed before tail is reduced. This is written as an invariant in Figure \ref{inv:stolen}.
 \begin{figure}[h]
-	\texttt{tail.new > tail.old || (tail.new $\leq$ tail.old \&\& tail.old == head \&\& pop() == STOLEN, head)}
+	\texttt{tail.new $\geq$ tail.old || (tail.new < tail.old \&\& tail.old-tail.new $\leq$ \#pop() == STOLEN)}
 	\caption{Invariant: every task is stolen only once.}
 	\label{inv:stolen}
 \end{figure}
-To elaborate on this invariant: either \texttt{tail} increases when a new task is stolen, or \texttt{tail} decreases but the task has to be removed from the deque so that it cannot be stolen again.
+To elaborate on this invariant: either \texttt{tail} increases when a new task is stolen, or \texttt{tail} decreases with the same amount as the number of \texttt{STOLEN} tasks that are removed. This way an already stolen task cannot be stolen again.
 When a task is executed once, this implies it is only stolen once and not executed by the owner thread, or it is executed by the owner thread and never stolen. This can be written as the invariant in Figure \ref{inv:exec}.
 \begin{figure}[h]
 	\texttt{(pop() == STOLEN \&\& head.new < head.old) || (pop() == WORK \&\& head.new < head.old)}
@@ -212,7 +250,6 @@ It also increases the transferability of this research since the tool constructs
 A model for the Lace algorithm is constructed from its specifications as described in \cite{vanDijk2014206} and displayed in Figure \ref{fig:Lace}.
 Note the that Figure \ref{fig:Lace} projects a slightly different form of the algorithm.
 However, this alternate form is used to construct a model for Lace.
-First of all, a model is created from the algorithm without the \texttt{allstolen} flag.
 
 \subsection{Linearisation Points}
 In Lace, the state of the system depends on variables head, split, and tail.
@@ -395,13 +432,13 @@ Since these occur at arbitrary points in the algorithm, it does not make sense t
 %				allstolen = o_allstolen					%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{lemma}
-	\texttt{allstolen = o\_allstolen} at load operations.
+	\texttt{o\_allstolen = allstolen} at every point where \texttt{o\_allstolen} is used.
 	\label{lem:allstolen}
 \end{lemma}
 \begin{proof}
 	Table \ref{tab:allst} and \ref{tab:oallst} indicate that both \texttt{allstolen} variables only change through methods \texttt{push} and \texttt{shrink\_\\shared}.
 	Figure \ref{fig:push} states that private variable \texttt{o\_split} is the only variable to change in between the modifications to \texttt{false} of the \texttt{allstolen} variables.
-	Subsequently, Figure \ref{fig:pop} states there are no linearisation between the modifications to \texttt{true} at all.
+	Subsequently, Figure \ref{fig:pop} states there are no linearisation points between the modifications to \texttt{true} at all.
 	No load operations of \texttt{allstolen} or \texttt{o\_allstolen} occur in between either modification of the variables.
 	The assumed memory model where loads can be reordered before stores does not influence this Lemma, since Table \ref{tab:allst} states stealing threads only use \texttt{allstolen}.
 	The owner thread does not reorder both \texttt{allstolen} variables, because the thread itself is the only thread modifying them.
@@ -411,12 +448,12 @@ Since these occur at arbitrary points in the algorithm, it does not make sense t
 %					split = o_split					%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{lemma}
-	\texttt{split = o\_split} at load operations.
+	\texttt{o\_split = split} at every point where \texttt{o\_split} is used.
 	\label{lem:split}
 \end{lemma}
 \begin{proof}
 	Table \ref{tab:split} and \ref{tab:osplit} affirm that both \texttt{split} variables only change through methods \texttt{push}, \texttt{grow\_shared}, and \texttt{shrink\_shared}.
-	Figure \ref{fig:push} indicates that private variable \texttt{movesplit} and \texttt{allstolen} are modified between the linearisation points of the \texttt{split} variables.
+	Figure \ref{fig:push} indicates that private variable \texttt{movesplit} and \texttt{allstolen} are modified between the linearisation points of both \texttt{split} variables.
 	Furthermore, Figure \ref{fig:pop} states that between linearisation points 23 and 24 no reads of either split variable occur.
 	Between linearisation point 30 of \texttt{split} and 37 of \texttt{o\_split} there are no read operations for either \texttt{split} variable.
 	In addition, between linearisation point 36 of \texttt{split} and linearisation point 37 of \texttt{o\_split} there are no read operations on \texttt{split}.	
@@ -427,37 +464,27 @@ Since these occur at arbitrary points in the algorithm, it does not make sense t
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %				    0 <= head < size					%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{lemma}
+\begin{invariant}
 	\texttt{0 $\leq$ head $\leq$ size}.
 	\label{lem:headsize}
-\end{lemma}
+\end{invariant}
 \begin{proof}
 	Table \ref{tab:head} indicates \texttt{head} is only increased at method \texttt{push} and decreased at the method \texttt{pop}.
 	This indicates there is no need to take the reordering of loads before stores into account, since only one thread operates on this variable.
-	Since we assume \texttt{head} = 0 at the start of the algorithm, i.e. \texttt{0 $\leq$ head < size}, it is left to prove linearisation point 13 cannot increase \texttt{head} beyond \texttt{size}.
+	Since we assume \texttt{head} = 0 at the start of the algorithm, i.e. \texttt{0 $\leq$ head $\leq$ size}, it is left to prove linearisation point 13 cannot increase \texttt{head} beyond \texttt{size}.
 	Subsequently, we prove linearisation points 45 and 47 cannot decrease \texttt{head} to a value lower than 0.
-	In PVS we input the code as depicted in Figure \ref{pvs:head}.
-	To proof lemma \texttt{lemma\_size}, we use axioms \texttt{head\_start}, stating \texttt{head} < \texttt{size} at the initialisation, and \texttt{head\_size} stating \texttt{head $\neq$ size}, i.e. line 11 of Lace.
-	Then, we expand function \texttt{incr\_head(head)}, which increases \texttt{head} by 1, i.e. line 13 of Lace.
-	Then using PVS' grind option, it concludes that indeed the lemma holds.
-	Proving \texttt{head} cannot decrease to a value lower than 0, we use axioms \texttt{head\_start} and \texttt{head\_zero} and prove \texttt{lemma\_zero} using PVS' grind option.
-	This concludes that the lemma holds.
+	Linearisation point 13 increases \texttt{head} by 1.
+	By inspection of line 11 of Lace we find \texttt{head $\neq$ size}, in combination with the assumption that \texttt{head $\leq$ size}, \texttt{head < size} holds.
+	This implies \texttt{head+1 $\leq$ size} for which this invariant holds.
+	Both linearisation point 45 and 47 decrease \texttt{head} by 1, and upon inspection of Figure \ref{fig:pop} we find line 43 of \texttt{head == 0} precedes both points.
+	Thus \texttt{head $\geq$ 0} and \texttt{head $\neq$ 0} implies \texttt{head > 0}.
+	Therefore \texttt{0 $\leq$ head-1}, proving the invariant.
 \end{proof}
-\begin{figure}[h]
-	\texttt{head\_start: AXIOM head >= 0 AND head < size}\\
-	\texttt{head\_zero:  AXIOM NOT (head = 0)}\\
-	\texttt{head\_size:  AXIOM NOT (head = size)}\\\\
-	\texttt{incr\_head(head): posnat = head+1}\\
-	\texttt{decr\_head(head): posnat = head-1}\\\\
-	\texttt{lemma\_size: LEMMA incr\_head(head) <= size}
-	\texttt{lemma\_zero: LEMMA decr\_head(head) >= 0}
-	\caption{PVS proof of 0 $\leq$ head $\leq$ size}
-	\label{pvs:head}
-\end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %		  tail+1 ==> !allstolen && t=tail < s=split 			%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%TODO !allstolen hoeft niet zo te zijn Lemma 15 ofzo bewijst dat dit wel zo is.
 \begin{lemma}
 	\texttt{tail.new = tail.old+1 $\Rightarrow$ !allstolen} and \texttt{t < s} and \texttt{t == tail} and \texttt{s == split}
 	\label{lem:incrtail}
@@ -478,59 +505,51 @@ Since these occur at arbitrary points in the algorithm, it does not make sense t
 %	      Linearisation point 30 => split.new <= split.old 	 	%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{lemma}
-	Linearisation point 30 $\Rightarrow$ \texttt{split.new $\leq$\\ split.old}
+	The modification \texttt{split = new\_s = (t+s)/2} at line 30 of Lace $\Rightarrow$ \texttt{split.new $\leq$ split.old}.
 	\label{lem:lin30}
 \end{lemma}
 \begin{proof}
-	Lemma \texttt{lem\_decr\_a} in Figure \ref{pvs:decrtail} corresponds to line 30 of Lace and states that \texttt{decr\_tail} $\leq$ \texttt{split}, under the assumptions that \texttt{tail != split} and \texttt{tail < split}.
-	The former assumption is valid since Figure \ref{fig:pop} states the variables \texttt{tail} and \texttt{split} are not equal when linearisation point 30 occurs and the read variables \texttt{tail} and \texttt{split} are not modified in between.
-	The latter assumption is valid since Lemma \ref{lem:incrtail} states \texttt{tail} cannot increase if \texttt{tail $\geq$ split} and at the start of Lace \texttt{tail == split == 0}.
-	Using PVS' grind option, this Lemma is proven correct.
+	According to Figure \ref{fig:pop}, \texttt{split} cannot be modified in between the read operation of \texttt{split}.
+	In addition, \texttt{tail $\leq$ split} for when \texttt{tail} is increased at line 5 it is increased to \texttt{t+1} where \texttt{t} < split.
+	Table \ref{tab:split} indicates \texttt{split} can only be decreased to \texttt{head} at line 18 of Lace.
+	However, \texttt{tail} is simultaneously set to \texttt{head-1}, i.e. lower than \texttt{tail}.
+	Moreover, Lemma \ref{lem:grshr} proves the modification at line 24 increases \texttt{split}.
+	Therefore we conclude \texttt{tail $\leq$ split}.
+	Thus line 30 states \texttt{split.new = new\_s = t+s/2 = tail+split.old/2 $\leq$ 2*split.old/2 $\leq$ split.old},\\since \texttt{t = tail} and \texttt{s = split}.
+	This proves Lemma \ref{lem:lin30}.
 \end{proof}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %	      Linearisation point 36 => split.new <= split.old 	 	%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{lemma}
-	Linearisation point 36 $\Rightarrow$ \texttt{split.new $\leq$ \\split.old} where \texttt{split.old} is before Linearisation point 30. 
+	The modification \texttt{split = new\_s = (t+1)/2} at Line 36 of Lace $\Rightarrow$ \texttt{split.new $\leq$ split.old}, where \texttt{split.old} is before line 30 of Lace.
 	\label{lem:lin36}
 \end{lemma}
 \begin{proof}
-	Lemma \texttt{lem\_decr\_b} in Figure \ref{pvs:decrtail} corresponds to the linearisation point of line 36 of Lace and states that after the linearsation point of line 30, line 36 can increase \texttt{split}, but not beyond the point of \texttt{split.old}, i.e. \texttt{split} before the linearisation point of line 30.
-	It assumes \texttt{tail != split} and \texttt{t > decr\_tail(tail,split)} and \texttt{t < split}.
-	The first of these assumptions is true according to Figure \ref{fig:pop}, it shows \texttt{t != s} is a requirement for reaching linearisation point 36.
-	Since \texttt{tail} is reread at line 32, but \texttt{split} is equal to the value read at line 27 this assumption still holds.
-	The second assumption is valid since Figure \ref{fig:pop} expounds \texttt{t > new\_s} for linearisation point 36 to be reached.
-	That is, the newly read value of \texttt{tail} here modeled as \texttt{t} is larger than the computed value of \texttt{split} at linearisation point 30.
-	Note that the newly read value of \texttt{tail} cannot increase any further, since the memory fence of line 31 asserts the modification of \texttt{split} is globally visible.
-	Any reordering of read and write operations as the x86 memory model allow do not apply in this part of the code since the memory fence forces global visibility.
-	The final assumption of \texttt{t < split} is true since Lemma \ref{lem:incrtail} affirms \texttt{tail} cannot increase unless it is smaller than \texttt{split}.
-	With these assumptions, PVS shows that indeed the newly computed value of \texttt{split.new $\leq$ split.old}.
+	Figure \ref{fig:pop} states line 30 precedes line 36 in Lace.
+	Lemma \ref{lem:lin30} indicates \texttt{split} decreases at line 30, however, the memory fence of line 31 making this modification globally visible might be too late so that \texttt{tail} has increased beyond the new \texttt{split}.
+	As described in the proof of Lemma \ref{lem:lin30}, \texttt{tail} cannot increase further than \texttt{split.old}.
+	Therefore the newly read value of \texttt{tail} at line 32 ensures \texttt{tail.new $\leq$ split}, where \texttt{split} is the modification after line 30.
+	Now the modification of line 36 can be interpreted as \texttt{split.new = (t+s)/2 $\leq$ 2*split.old/2 $leq$ split.old}, proving Lemma \ref{lem:lin36}.
 \end{proof}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %			Global visibility min(lin 30, lin 36)			 	%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{lemma}
-	\texttt{min(linearisation point 30, linearisation point 36)} is globally visible.
+	The lowest value of \texttt{split}, as modified by lines 30 and 36 is globally visible after the modification of line 36.
 	\label{lem:lin3036}
 \end{lemma}
-\begin{proof}
-	Lemma \texttt{lem\_decr\_c} in Figure \ref{pvs:decrtail} insists linearisation point 36 cannot decrease with respect to linearisation point 30.
-	Here the assumptions of \texttt{lem\_decr\_a} and \texttt{lem\_decr\_b} are both needed to prove the lemma correct.
-	PVS proves that the minimum value of split after linearisation point 30 and linearisation point 36 is linearisation point 30.
-	This change is visible because of the memory fence of line 31.
-	No memory fence is needed for linearisation point 36, since stealing threads cannot abuse this modification because \texttt{split.old $\leq$ tail.new}.
-	Therefore stealing threads cannot steal more because of the modification.	
+\begin{proof}	
+	Figure \ref{fig:pop} affirms line 30 is reached before line 36 and a memory fence is executed in between the executions of both lines.
+	It is left to prove line 36 does not decrease the value of \texttt{tail}, with respect to the modification of line 30.
+	The operations of both linearisation points are equal, they are set to \texttt{new\_s} where \texttt{new\_s = (t+s)/2}.
+	In the latter modification the value of \texttt{t} is reread from \texttt{tail} at line 32, i.e. after the memory fence, all other variables are equal.
+	Table \ref{tab:tail} states, \texttt{tail} is only modified at lines 5 and 15 by \texttt{steal} and \texttt{push} respectively.
+	The only modification is the increase of \texttt{tail}, since \texttt{push} is only called from within the owner thread, and not in between lines 30 and 36.
+	Therefore, \texttt{t.new $\geq$ t.old} which means \texttt{split.30 = (t.old+split.old)/2 $\leq$ (t.new+split.old)/2}	
 \end{proof}
-\begin{figure}[h]
-	\texttt{decr\_tail(tail, split): posnat = (tail+split)/2}\\\\
-	\texttt{lem\_decr\_a: LEMMA NOT tail = split AND tail < split IMPLIES decr\_tail(tail,split) <= split}\\\\
-	\texttt{lem\_decr\_b: LEMMA NOT tail = split AND t > decr\_tail(tail,split) AND t < split IMPLIES decr\_tail(t, split) <= split}\\\\
-	\texttt{lem\_decr\_c: LEMMA NOT tail = split AND tail < split AND t > decr\_tail(tail, split) AND t < split IMPLIES decr\_tail(tail, split) <= decr\_tail(t, split)}
-	\caption{PVS proof of Lemmas \ref{lem:lin30}, \ref{lem:lin36}, and \ref{lem:lin3036}. Method decr\_tail returns the modified value of tail. lem\_decr\_a is used in Lemma \ref{lem:lin30}, lem\_decr\_b is used in Lemma \ref{lem:lin36}, and lem\_decr\_c is used in Lemma \ref{lem:lin3036}. Variables tail and split correspond to the variables read at line 27 of Lace, variable t corresponds to the newly read variable tail at line 32 of Lace.}
-	\label{pvs:decrtail}
-\end{figure}
 
 \begin{lemma}
 	\texttt{shrink\_shared} returns \texttt{false} and \texttt{tail $\leq$ head} $\Rightarrow$ \texttt{tail $\leq$ split < head}.
@@ -544,7 +563,7 @@ Since these occur at arbitrary points in the algorithm, it does not make sense t
 \end{proof}
 
 \begin{lemma}
-	\texttt{grow\_shared $\Rightarrow \neg$allstolen}
+	\texttt{grow\_shared} is only called if \texttt{$\neg$allstolen}
 	\label{lem:grshr}
 \end{lemma}
 \begin{proof}
@@ -554,6 +573,7 @@ Since these occur at arbitrary points in the algorithm, it does not make sense t
 	In combination with Lemma \ref{lem:allstolen} we conclude that an invocation of \texttt{grow\_shared} $\Rightarrow \neg$\texttt{allstolen}.
 \end{proof}
 
+%TODO from here on further.
 \begin{lemma}
 	\texttt{$\neg$allstolen $\Rightarrow$ tail $\leq$ split $\leq$ head}
 	\label{lem:allst.var}
@@ -633,15 +653,8 @@ Since these occur at arbitrary points in the algorithm, it does not make sense t
 	\label{lem:shrinkshared}
 \end{lemma}
 \begin{proof}
-	Table \ref{tab:allst} and \ref{tab:oallst} indicate both \texttt{allstolen} variables can only be modified within the methods \texttt{push} and \texttt{shrink\_shared}. Since both can only be called by the owner thread, they cannot be run simultaneously.  Thus, only \texttt{shrink\_shared} needs to be inspected. The return \texttt{true} statement of \texttt{shrink\_shared} corresponds to linearisation point 40 in Figure \ref{fig:pop}, since no more linearisation points occur between that point and the return true statement. Therefore, the code depicted in Figure \ref{pvs:shrshared} is used to proof the \texttt{allstolen} variables are set when \texttt{shrink\_shared} returns true. By adding lemmas \texttt{allstolen\_set} and \texttt{o\_allstolen\_set} to the proof, and using PVS' \texttt{grind} option, the tool verifies both \texttt{allstolen} flags are set to true if \texttt{shrink\_shared} returns true. Note that stealing threads might not receive this modification of \texttt{allstolen} before they read the value since this paper assumes a system with the x86 memory model.
+	Table \ref{tab:allst} and \ref{tab:oallst} indicate both \texttt{allstolen} variables can only be modified within the methods \texttt{push} and \texttt{shrink\_shared}. Since both can only be called by the owner thread, they cannot be run simultaneously.  Thus, only \texttt{shrink\_shared} needs to be inspected. The return \texttt{true} statement of \texttt{shrink\_shared} corresponds to linearisation point 40 in Figure \ref{fig:pop}, which is preceded by linearisation point 39. Since no more linearisation points occur between that point and the return true statement, the \texttt{allstolen} variables are \texttt{true}. Note that stealing threads might not receive this modification of \texttt{allstolen} before they read the value since this paper assumes a system with the x86 memory model.
 \end{proof}
-\begin{figure}
-	\texttt{allstolen\_set: AXIOM allstolen}\\
-	\texttt{o\_allstolen\_set: AXIOM o\_allstolen}\\
-	\texttt{shr\_shared\_ret: LEMMA allstolen AND o\_allstolen}
-	\caption{PVS proof of shrink\_shared $\Rightarrow$ allstolen \&\& o\_allstolen}
-	\label{pvs:shrshared}
-\end{figure}
 
 \begin{lemma}
 	\texttt{head.new = head.old - 1} and \texttt{pop() =\\ STOLEN $\Rightarrow$ \texttt{allstolen}}
@@ -735,6 +748,9 @@ Since these occur at arbitrary points in the algorithm, it does not make sense t
 	\caption{PVS proof Lemma \ref{lem:tail}}
 	\label{pvs:tail}
 \end{figure}
+
+\section{Conclusion}
+
 
 \bibliography{Bibliography}
 

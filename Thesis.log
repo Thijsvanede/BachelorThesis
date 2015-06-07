@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.2.20)  28 MAY 2015 18:39
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.2.20)  7 JUN 2015 15:29
 entering extended mode
 **C:/Users/Thijs/Documents/Universiteit*Twente/Bachelor*Thesis/Thesis/Thesis.te
 x
@@ -263,64 +263,65 @@ File: listings.cfg 2007/02/22 1.4 listings configuration
 Package: listings 2007/02/22 1.4 (Carsten Heinz)
 \c@definition=\count121
 \c@lemma=\count122
+\c@invariant=\count123
 
 ("C:\Users\Thijs\Documents\Universiteit Twente\Bachelor Thesis\Thesis\Thesis.au
 x")
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 32.
-LaTeX Font Info:    ... okay on input line 32.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 32.
-LaTeX Font Info:    ... okay on input line 32.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 32.
-LaTeX Font Info:    ... okay on input line 32.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 32.
-LaTeX Font Info:    ... okay on input line 32.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 32.
-LaTeX Font Info:    ... okay on input line 32.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 32.
-LaTeX Font Info:    ... okay on input line 32.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
  ("C:\Program Files\LaTeX\tex\context\base\supp-pdf.mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count123
+\scratchcounter=\count124
 \scratchdimen=\dimen134
 \scratchbox=\box32
-\nofMPsegments=\count124
-\nofMParguments=\count125
+\nofMPsegments=\count125
+\nofMParguments=\count126
 \everyMPshowfont=\toks37
-\MPscratchCnt=\count126
+\MPscratchCnt=\count127
 \MPscratchDim=\dimen135
-\MPnumerator=\count127
-\makeMPintoPDFobject=\count128
+\MPnumerator=\count128
+\makeMPintoPDFobject=\count129
 \everyMPtoPDFconversion=\toks38
 )
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: listings package is loaded.
 Package caption Info: End \AtBeginDocument code.
-\c@lstlisting=\count129
-LaTeX Font Info:    Try loading font information for U+msa on input line 33.
+\c@lstlisting=\count130
+LaTeX Font Info:    Try loading font information for U+msa on input line 34.
  ("C:\Program Files\LaTeX\tex\latex\amsfonts\umsa.fd"
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 33.
+LaTeX Font Info:    Try loading font information for U+msb on input line 34.
 
 ("C:\Program Files\LaTeX\tex\latex\amsfonts\umsb.fd"
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Try loading font information for U+lasy on input line 33.
+LaTeX Font Info:    Try loading font information for U+lasy on input line 34.
 
 ("C:\Program Files\LaTeX\tex\latex\base\ulasy.fd"
 File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
 )
-Overfull \hbox (10.79999pt too wide) in paragraph at lines 33--33
+Overfull \hbox (10.79999pt too wide) in paragraph at lines 34--34
  [][][] 
  []
 
 
-Overfull \hbox (7.80002pt too wide) in paragraph at lines 33--33
+Overfull \hbox (7.80002pt too wide) in paragraph at lines 34--34
  [] 
  []
 
 
-Overfull \hbox (1.57037pt too wide) in paragraph at lines 42--45
+Overfull \hbox (1.57037pt too wide) in paragraph at lines 48--51
 \T1/aer/m/n/9 creased de-mand for con-cur-rent pro-gram-ming to fully utilise
  []
 
@@ -328,386 +329,328 @@ Overfull \hbox (1.57037pt too wide) in paragraph at lines 42--45
 File: Lace_Explanation.png Graphic file (type png)
 
 <use Lace_Explanation.png>
-Package pdftex.def Info: Lace_Explanation.png used on input line 69.
+Package pdftex.def Info: Lace_Explanation.png used on input line 80.
 (pdftex.def)             Requested size: 227.62204pt x 105.90381pt.
  [1{C:/Users/Thijs/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}
 
 
  <C:/Users/Thijs/Documents/Universiteit Twente/Bachelor Thesis/Thesis/Lace_Expl
 anation.png>]
-LaTeX Font Info:    Try loading font information for T1+aett on input line 105.
+LaTeX Font Info:    Try loading font information for T1+aett on input line 116.
 
  ("C:\Program Files\LaTeX\tex\latex\ae\t1aett.fd"
 File: t1aett.fd 1997/11/16 Font definitions for T1/aett.
-)
-Underfull \hbox (badness 10000) in paragraph at lines 141--142
-[]\T1/aer/m/n/9 Owner thread only calls \T1/aett/m/n/9 grow_shared \T1/aer/m/n/
-9 and
+) [2]
+Underfull \hbox (badness 10000) in paragraph at lines 204--205
+[]\T1/aett/m/n/9 tail.new $\OMS/cmsy/m/n/9 $ \T1/aett/m/n/9 tail.old || (tail.
+new < tail.old &&
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 166--167
-[]\T1/aett/m/n/9 tail.new > tail.old || (tail.new $\OMS/cmsy/m/n/9 $ \T1/aett/
-m/n/9 tail.old &&
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 173--174
+Underfull \hbox (badness 10000) in paragraph at lines 211--212
 []\T1/aett/m/n/9 (pop() == STOLEN && head.new < head.old) ||
+ []
+
+
+Overfull \hbox (8.3123pt too wide) in paragraph at lines 232--239
+\T1/aett/m/n/9 head.old) || (pop() == WORK && head.new < head.old)
+ []
+
+[3]
+Overfull \hbox (1.5146pt too wide) in paragraph at lines 289--292
+[]\T1/aett/m/n/9 movesplit \T1/aer/m/n/9 is not part of the deque, but it in-di
+-cates whether
+ []
+
+
+Overfull \hbox (10.33896pt too wide) in paragraph at lines 314--322
+ [][] 
+ []
+
+
+Overfull \hbox (10.33896pt too wide) in paragraph at lines 328--336
+ [][] 
+ []
+
+
+Overfull \hbox (1.86139pt too wide) in paragraph at lines 353--360
+ [][] 
+ []
+
+
+Overfull \hbox (7.549pt too wide) in paragraph at lines 365--371
+ [][] 
+ []
+
+
+Overfull \hbox (7.549pt too wide) in paragraph at lines 376--382
+ [][] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 299--385
+[]$[]$
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 299--385
+$[]$
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 299--385
+$[]$
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 299--385
+$[]$
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 299--385
+$[]$
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 299--385
+$[]$
  []
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[2]
-Overfull \hbox (8.3123pt too wide) in paragraph at lines 194--201
-\T1/aett/m/n/9 head.old) || (pop() == WORK && head.new < head.old)
- []
-
-
-Overfull \hbox (1.5146pt too wide) in paragraph at lines 252--255
-[]\T1/aett/m/n/9 movesplit \T1/aer/m/n/9 is not part of the deque, but it in-di
--cates whether
- []
-
-[3]
-Overfull \hbox (10.33896pt too wide) in paragraph at lines 277--285
- [][] 
- []
-
-
-Overfull \hbox (10.33896pt too wide) in paragraph at lines 291--299
- [][] 
- []
-
-
-Overfull \hbox (1.86139pt too wide) in paragraph at lines 316--323
- [][] 
- []
-
-
-Overfull \hbox (7.549pt too wide) in paragraph at lines 328--334
- [][] 
- []
-
-
-Overfull \hbox (7.549pt too wide) in paragraph at lines 339--345
- [][] 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 262--348
-[]$[]$
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 262--348
-$[]$
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 262--348
-$[]$
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 262--348
-$[]$
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 262--348
-$[]$
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 262--348
-$[]$
- []
-
 <Push_flow_diagram_2.png, id=27, 586.44093pt x 375.65344pt>
 File: Push_flow_diagram_2.png Graphic file (type png)
 
 <use Push_flow_diagram_2.png>
-Package pdftex.def Info: Push_flow_diagram_2.png used on input line 364.
+Package pdftex.def Info: Push_flow_diagram_2.png used on input line 401.
 (pdftex.def)             Requested size: 205.25739pt x 131.48067pt.
 
 <Pop_flow_diagram_2.png, id=28, 811.53188pt x 465.99094pt>
 File: Pop_flow_diagram_2.png Graphic file (type png)
 
 <use Pop_flow_diagram_2.png>
-Package pdftex.def Info: Pop_flow_diagram_2.png used on input line 384.
+Package pdftex.def Info: Pop_flow_diagram_2.png used on input line 421.
 (pdftex.def)             Requested size: 202.88246pt x 116.49744pt.
  [4 <C:/Users/Thijs/Documents/Universiteit Twente/Bachelor Thesis/Thesis/Push_f
 low_diagram_2.png> <C:/Users/Thijs/Documents/Universiteit Twente/Bachelor Thesi
 s/Thesis/Pop_flow_diagram_2.png>]
-Overfull \hbox (7.72678pt too wide) in paragraph at lines 398--400
-[]\T1/aett/m/it/9 allstolen = o_allstolen \T1/aer/m/it/9 at load op-er-a-tions.
+Overfull \hbox (14.24268pt too wide) in paragraph at lines 435--437
+[]\T1/aett/m/it/9 o_allstolen = all-stolen \T1/aer/m/it/9 at ev-ery point where
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 447--454
-
+Overfull \hbox (11.89377pt too wide) in paragraph at lines 451--453
+[]\T1/aett/m/it/9 o_split = split \T1/aer/m/it/9 at ev-ery point where \T1/aett
+/m/it/9 o_split
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 447--454
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 447--454
-\T1/aett/m/n/9 lemma_size: LEMMA incr_head(head) <= size
- []
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-Overfull \hbox (6.45607pt too wide) in paragraph at lines 462--464
+Overfull \hbox (6.45607pt too wide) in paragraph at lines 489--491
 []\T1/aett/m/it/9 tail.new = tail.old+1 $\OMS/cmsy/m/n/9 )$ \T1/aett/m/it/9 !al
 l-stolen \T1/aer/m/it/9 and
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 469--473
+Underfull \hbox (badness 10000) in paragraph at lines 496--500
 []\T1/aett/m/n/9 cas(var1, var2, exp1, exp2, val1, val2: pos-nat)
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 469--473
+Underfull \hbox (badness 10000) in paragraph at lines 496--500
 \T1/aett/m/n/9 : bool = IF (var1 = exp1 AND var2 = exp2 THEN
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 469--473
+Underfull \hbox (badness 10000) in paragraph at lines 496--500
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 469--473
+Underfull \hbox (badness 10000) in paragraph at lines 496--500
 \T1/aett/m/n/9 steal(t, s, tail, split, all-stolen): bool =
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 469--473
+Underfull \hbox (badness 10000) in paragraph at lines 496--500
 \T1/aett/m/n/9 IF all-stolen THEN false ELSE (IF t < s THEN
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 469--473
+Underfull \hbox (badness 10000) in paragraph at lines 496--500
 \T1/aett/m/n/9 cas(t,s,tail,split,(t+1),s) ELSE false EN-DIF)
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 469--473
+Underfull \hbox (badness 10000) in paragraph at lines 496--500
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 469--473
+Underfull \hbox (badness 10000) in paragraph at lines 496--500
 \T1/aett/m/n/9 lem_incr_tail: LEMMA (NOT all-stolen AND
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 469--473
+Underfull \hbox (badness 10000) in paragraph at lines 496--500
 \T1/aett/m/n/9 t < s AND t = tail AND s = split) IM-PLIES
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 469--473
+Underfull \hbox (badness 10000) in paragraph at lines 496--500
 \T1/aett/m/n/9 lem_incr_tail: LEMMA NOT (NOT all-stolen AND
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 469--473
+Underfull \hbox (badness 10000) in paragraph at lines 496--500
 \T1/aett/m/n/9 t < s AND t = tail AND s = split) IM-PLIES
- []
-
-[5]
-Overfull \hbox (3.79414pt too wide) in paragraph at lines 515--517
-[]\T1/aett/m/it/9 min(linearisation point 30, lin-eari-sa-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 527--531
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 527--531
-\T1/aett/m/n/9 lem_decr_a: LEMMA NOT tail = split AND tail <
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 527--531
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 527--531
-\T1/aett/m/n/9 lem_decr_b: LEMMA NOT tail = split AND t >
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 527--531
-\T1/aett/m/n/9 decr_tail(tail,split) AND t < split IM-PLIES
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 527--531
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 527--531
-\T1/aett/m/n/9 lem_decr_c: LEMMA NOT tail = split AND tail
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 527--531
-\T1/aett/m/n/9 < split AND t > decr_tail(tail, split) AND
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 527--531
-\T1/aett/m/n/9 t < split IM-PLIES decr_tail(tail, split) <=
- []
-
-
-Overfull \hbox (4.58504pt too wide) in paragraph at lines 551--555
-[]\T1/aer/m/n/9 Figure 7[] spec-i-fies that \T1/aett/m/n/9 grow_shared\T1/aer/m
-/n/9 , rep-re-sented
- []
-
-
-Overfull \hbox (4.45068pt too wide) in paragraph at lines 551--555
-\T1/aer/m/n/9 mod-i-fy-ing \T1/aett/m/n/9 o_allstolen \T1/aer/m/n/9 oc-cur af-t
-er \T1/aett/m/n/9 o_allstolen \T1/aer/m/n/9 is checked.
- []
-
-
-Overfull \hbox (22.25487pt too wide) in paragraph at lines 551--555
-\T1/aer/m/n/9 con-clude that an in-vo-ca-tion of \T1/aett/m/n/9 grow_shared $\O
-MS/cmsy/m/n/9 ) :$\T1/aett/m/n/9 allstolen\T1/aer/m/n/9 .[] 
- []
-
-
-Overfull \hbox (3.4694pt too wide) in paragraph at lines 589--590
-[]\T1/aer/m/n/9 This proves that for all lin-eari-sa-tion points mod-i-fy-ing \
-T1/aett/m/n/9 tail,
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 592--598
-\T1/aett/m/n/9 lem_tail: LEMMA tail < split IM-PLIES
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 592--598
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 592--598
-\T1/aett/m/n/9 lem_split: LEMMA NOT tail = split AND t >
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 592--598
-\T1/aett/m/n/9 decr_tail(tail, split) AND t < split IM-PLIES
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 592--598
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 592--598
-\T1/aett/m/n/9 lem_head: LEMMA split < head IM-PLIES split <=
  []
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 
-Overfull \hbox (6.27905pt too wide) in paragraph at lines 603--605
+Overfull \hbox (2.19179pt too wide) in paragraph at lines 508--510
+[]\T1/aer/m/it/9 The mod-i-fi-ca-tion \T1/aett/m/it/9 split = new_s = (t+s)/2
+ []
+
+
+Overfull \hbox (2.19179pt too wide) in paragraph at lines 526--528
+[]\T1/aer/m/it/9 The mod-i-fi-ca-tion \T1/aett/m/it/9 split = new_s = (t+1)/2
+ []
+
+
+Overfull \hbox (1.44196pt too wide) in paragraph at lines 530--535
+\T1/aett/m/n/9 split.new = (t+s)/2 $\OMS/cmsy/m/n/9 $ \T1/aett/m/n/9 2*split.o
+ld/2 $\OML/cmm/m/it/9 leq$ \T1/aett/m/n/9 split.old\T1/aer/m/n/9 ,
+ []
+
+[5]
+Overfull \hbox (4.58504pt too wide) in paragraph at lines 570--574
+[]\T1/aer/m/n/9 Figure 7[] spec-i-fies that \T1/aett/m/n/9 grow_shared\T1/aer/m
+/n/9 , rep-re-sented
+ []
+
+
+Overfull \hbox (4.45068pt too wide) in paragraph at lines 570--574
+\T1/aer/m/n/9 mod-i-fy-ing \T1/aett/m/n/9 o_allstolen \T1/aer/m/n/9 oc-cur af-t
+er \T1/aett/m/n/9 o_allstolen \T1/aer/m/n/9 is checked.
+ []
+
+
+Overfull \hbox (22.25487pt too wide) in paragraph at lines 570--574
+\T1/aer/m/n/9 con-clude that an in-vo-ca-tion of \T1/aett/m/n/9 grow_shared $\O
+MS/cmsy/m/n/9 ) :$\T1/aett/m/n/9 allstolen\T1/aer/m/n/9 .[] 
+ []
+
+
+Overfull \hbox (3.4694pt too wide) in paragraph at lines 609--610
+[]\T1/aer/m/n/9 This proves that for all lin-eari-sa-tion points mod-i-fy-ing \
+T1/aett/m/n/9 tail,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 612--618
+\T1/aett/m/n/9 lem_tail: LEMMA tail < split IM-PLIES
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 612--618
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 612--618
+\T1/aett/m/n/9 lem_split: LEMMA NOT tail = split AND t >
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 612--618
+\T1/aett/m/n/9 decr_tail(tail, split) AND t < split IM-PLIES
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 612--618
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 612--618
+\T1/aett/m/n/9 lem_head: LEMMA split < head IM-PLIES split <=
+ []
+
+
+Overfull \hbox (6.27905pt too wide) in paragraph at lines 623--625
 []\T1/aer/m/it/9 Linearisation point 23 $\OMS/cmsy/m/n/9 )$\T1/aett/m/it/9 spli
 t.new $\OMS/cmsy/m/n/9 $ \T1/aett/m/it/9 head
  []
 
 
-Overfull \hbox (32.11128pt too wide) in paragraph at lines 607--614
-[]\T1/aer/m/n/9 Lemma 9[] af-firms $\OMS/cmsy/m/n/9 :$ \T1/aett/m/n/9 all-stole
+Overfull \hbox (32.11128pt too wide) in paragraph at lines 627--634
+[]\T1/aer/m/n/9 Lemma 8[] af-firms $\OMS/cmsy/m/n/9 :$ \T1/aett/m/n/9 all-stole
 n \T1/aer/m/n/9 holds when \T1/aett/m/n/9 grow_shared
  []
 
-[6]
-Underfull \hbox (badness 10000) in paragraph at lines 616--618
+
+Underfull \hbox (badness 10000) in paragraph at lines 636--638
 []\T1/aett/m/n/9 grow_shared(split, head): pos-nat =
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 616--618
+Underfull \hbox (badness 10000) in paragraph at lines 636--638
 \T1/aett/m/n/9 lem_incr_split: LEMMA split <= head IM-PLIES
  []
 
-
-Overfull \hbox (47.61407pt too wide) in paragraph at lines 636--637
-\T1/aer/m/n/9 re-turns true. By adding lem-mas \T1/aett/m/n/9 all-stolen_set \T
-1/aer/m/n/9 and \T1/aett/m/n/9 o_allstolen_set
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 656--659
+[6]
+Underfull \hbox (badness 10000) in paragraph at lines 669--672
 []\T1/aett/m/n/9 shrink_shared(o_allstolen, all-stolen): bool =
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 656--659
+Underfull \hbox (badness 10000) in paragraph at lines 669--672
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 656--659
+Underfull \hbox (badness 10000) in paragraph at lines 669--672
 \T1/aett/m/n/9 pop(head, o_split, o_allstolen, all-stolen):
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 656--659
+Underfull \hbox (badness 10000) in paragraph at lines 669--672
 \T1/aett/m/n/9 bool = NOT (head = 0) AND (o_allstolen OR
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 656--659
+Underfull \hbox (badness 10000) in paragraph at lines 669--672
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 656--659
+Underfull \hbox (badness 10000) in paragraph at lines 669--672
 \T1/aett/m/n/9 lem_allstolen: LEMMA pop(head, o_split,
  []
 
 
-Overfull \hbox (5.39558pt too wide) in paragraph at lines 668--674
+Overfull \hbox (5.39558pt too wide) in paragraph at lines 681--687
 \T1/aer/m/n/9 there-fore we can use this as-sump-tion in prov-ing this Lemma.
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 676--678
+Underfull \hbox (badness 10000) in paragraph at lines 689--691
 \T1/aett/m/n/9 lem_grow: LEMMA head >= split IM-PLIES
  []
 
 
-Overfull \hbox (2.81712pt too wide) in paragraph at lines 683--685
+Overfull \hbox (2.81712pt too wide) in paragraph at lines 696--698
 []\T1/aett/m/it/9 allstolen $\OMS/cmsy/m/n/9 ) :$\T1/aett/m/it/9 tail.new = tai
 l.old + 1
  []
 
-[7]
-Overfull \hbox (6.57289pt too wide) in paragraph at lines 708--710
+
+Overfull \hbox (6.57289pt too wide) in paragraph at lines 721--723
 \T1/aett/m/it/9 (tail.new < tail.old \T1/aer/m/it/9 and \T1/aett/m/it/9 tail.ol
 d-tail.new $\OMS/cmsy/m/n/9 $ \T1/aett/m/it/9 #pop()
  []
@@ -717,19 +660,19 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 
 ("C:\Users\Thijs\Documents\Universiteit Twente\Bachelor Thesis\Thesis\Thesis.bb
-l") [8] [9
+l" [7]) [8] [9
 
 ]
 ("C:\Users\Thijs\Documents\Universiteit Twente\Bachelor Thesis\Thesis\Thesis.au
 x") ) 
 Here is how much of TeX's memory you used:
- 4854 strings out of 493921
- 68085 string characters out of 3149287
- 228048 words of memory out of 3000000
- 8065 multiletter control sequences out of 15000+200000
+ 4858 strings out of 493921
+ 68134 string characters out of 3149287
+ 232086 words of memory out of 3000000
+ 8069 multiletter control sequences out of 15000+200000
  56948 words of font info for 82 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
- 41i,10n,38p,1189b,1002s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 41i,10n,38p,895b,1002s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files/LaTeX/fonts/enc/dvips/fontname/8r.enc}<C:/Program Files/
 LaTeX/fonts/type1/public/amsfonts/cm/cmbx8.pfb><C:/Program Files/LaTeX/fonts/ty
 pe1/public/amsfonts/cm/cmbx9.pfb><C:/Program Files/LaTeX/fonts/type1/public/ams
@@ -742,7 +685,7 @@ nts/cm/cmtt9.pfb><C:/Program Files/LaTeX/fonts/type1/urw/helvetic/uhvb8a.pfb><C
 :/Program Files/LaTeX/fonts/type1/urw/helvetic/uhvr8a.pfb><C:/Program Files/LaT
 eX/fonts/type1/urw/times/utmb8a.pfb><C:/Program Files/LaTeX/fonts/type1/urw/tim
 es/utmr8a.pfb><C:/Program Files/LaTeX/fonts/type1/urw/times/utmri8a.pfb>
-Output written on Thesis.pdf (9 pages, 317403 bytes).
+Output written on Thesis.pdf (9 pages, 317855 bytes).
 PDF statistics:
  94 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)

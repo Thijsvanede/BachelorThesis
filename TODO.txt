@@ -1,8 +1,9 @@
 load before store in PVS. op letten
 taak kan opnieuw gestolen worden, uitleg!
-Evaluation: 
+Evaluation: is PVS handig?
 Introduction: PVS, bewijzen, Lace
 Linearisation points paper, doorsturen.
 vcs.utwente.nl git repository
 actieve schrijfstijl gebruiken
 Peek toevoegen bij wachten op 
+
