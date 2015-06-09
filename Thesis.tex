@@ -383,6 +383,7 @@ The linearisation points can be found in Table \ref{tab:allst} and \ref{tab:oall
 		\label{tab:oallst}
 	\end{subtable}
 	\caption{The method column indicates the method where the variable is modified. Lin pt column refers to the linearisation point in the Lace algorithm as shown in Figure \ref{fig:Lace}. The op column explains the executed operation. The final column init point refers to the point in the Lace algorithm where the variables are read. Note that in \ref{tab:split} and \ref{tab:osplit} o\_split and head are abbreviated to o, h respectively. Tail and split are abbreviated to t and s since these is a local variables as in the algorithm.}
+	\label{tab:linpoints}
 \end{table}
 
 \subsection{Order of linearisation points}
@@ -484,22 +485,18 @@ Since these occur at arbitrary points in the algorithm, it does not make sense t
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %		  tail+1 ==> !allstolen && t=tail < s=split 			%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%TODO !allstolen hoeft niet zo te zijn Lemma 15 ofzo bewijst dat dit wel zo is.
 \begin{lemma}
-	\texttt{tail.new = tail.old+1 $\Rightarrow$ !allstolen} and \texttt{t < s} and \texttt{t == tail} and \texttt{s == split}
+	\texttt{tail} can only increase by exactly 1 if\\\texttt{$\neg$allstolen} and \texttt{t < s} and \texttt{t = tail} and \texttt{s = split}
 	\label{lem:incrtail}
 \end{lemma}
 \begin{proof}
-	The only linearisation point where \texttt{tail} is increased is at the \texttt{cas} operation of line 5 as stated in Table \ref{tab:tail}. This modification only succeeds if \texttt{cas} succeeds, i.e. if the compare-and-swap method returns true. Thus this can be modeled in PVS as described in Figure \ref{pvs:tailincr}.
+	The only linearisation point where \texttt{tail} is increased is at the \texttt{cas} operation of line 5 as stated in Table \ref{tab:tail}.
+	This modification only succeeds if \texttt{cas} succeeds, i.e. if the compare-and-swap method returns true.
+	That is, \texttt{t = tail} and \texttt{s = split}.
+	Furthermore, line 4 states \texttt{t < s} for which neither variable can change at any point since they are local to the method.
+	Opposed to \texttt{t} and \texttt{s} not changing, \texttt{allstolen} can be modified after it is checked at line 2.
+	However, Lemma \ref{lem:allst.incrtail} explains a change in \texttt{allstolen} is caught before the \texttt{cas} operation is executed, ensuring this Lemma holds.	
 \end{proof}
-\begin{figure}[h]
-	\texttt{cas(var1, var2, exp1, exp2, val1, val2: posnat) : bool = IF (var1 = exp1 AND var2 = exp2 THEN true ELSE false ENDIF}\\\\
-	\texttt{steal(t, s, tail, split, allstolen): bool = IF allstolen THEN false ELSE (IF t < s THEN cas(t,s,tail,split,(t+1),s) ELSE false ENDIF) ENDIF}\\\\
-	\texttt{lem\_incr\_tail: LEMMA (NOT allstolen AND t < s AND t = tail AND s = split) IMPLIES steal(t,s,tail,split,allstolen) = true}\\
-	\texttt{lem\_incr\_tail: LEMMA NOT (NOT allstolen AND t < s AND t = tail AND s = split) IMPLIES steal(t,s,tail,split,allstolen) = false}
-	\caption{PVS proof of incrementing tail}
-	\label{pvs:tailincr}
-\end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %	      Linearisation point 30 => split.new <= split.old 	 	%
@@ -570,10 +567,9 @@ Since these occur at arbitrary points in the algorithm, it does not make sense t
 	Figure \ref{fig:pop} specifies that \texttt{grow\_shared}, represented by linearisation point 23, can only be reached if \texttt{$\neg$o\_all-stolen}.
 	Furthermore, it shows no linearisation points modifying \texttt{o\_allstolen} occur after \texttt{o\_allstolen} is checked.
 	Table \ref{tab:allst} and \ref{tab:oallst} state both variables can only be changed by the owner thread.
-	In combination with Lemma \ref{lem:allstolen} we conclude that an invocation of \texttt{grow\_shared} $\Rightarrow \neg$\texttt{allstolen}.
+	In combination with Lemma \ref{lem:allstolen} we conclude that \texttt{grow\_shared} is only called if $\neg$\texttt{allstolen}.
 \end{proof}
 
-%TODO from here on further.
 \begin{lemma}
 	\texttt{$\neg$allstolen $\Rightarrow$ tail $\leq$ split $\leq$ head}
 	\label{lem:allst.var}
@@ -588,59 +584,47 @@ Since these occur at arbitrary points in the algorithm, it does not make sense t
 	
 	Table \ref{tab:tail} demonstrates variable \texttt{tail} is modified at linearisation point 5 and 15.
 	Lemma \ref{lem:incrtail} states that for linearisation point 5 to execute \texttt{t < s} and \texttt{t == tail} and \texttt{s = split}.
-	When modeling this in PVS as in Figure \ref{pvs:allst.var}, we see that \texttt{tail $\leq$ split} holds.
+	Therefore, \texttt{t < split} and \texttt{tail} is set to \texttt{t+1}, i.e. \texttt{tail.new = t+1 $\leq$ split}.
 	Figure \ref{fig:push} expounds linearisation point 15 cannot be reached if \texttt{$\neg$ o\_allstolen}, because Lemma \ref{lem:allstolen} states \texttt{o\_allstolen = allstolen} at load operations, this linearisation point cannot be reached when \texttt{$\neg$allstolen}.
 	
 	Table \ref{tab:split} indicates \texttt{split} is modified at linearisation points 15, 23, 30, and 36.
 	As with linearisation point 15 of \texttt{tail}, linearisation point 15 is unreachable when \texttt{$\neg$allstolen}.
 	Linearisation point 23 can be reached, Lemma \ref{lem:lin23} states that after this linearisation point \texttt{split $\leq$ head} still holds, using the assumption of this Lemma, that \texttt{$\neg$allstolen $\Rightarrow$ split $\leq$ head}.
 	Linearisation point 30 may violate the lemma, since \texttt{tail} can grow to the value of \texttt{split.old} and Lemma \ref{lem:lin30} expounds \texttt{split.new $\leq$ split.old} after the modification of linearisation point 30.
-	However, as described in Figure \ref{pvs:allst.var} the linearisation point 36 will restore the value \texttt{split} so that \texttt{tail $\leq$ split} holds.
+	However linearisation point 36 restores the value \texttt{split} so that \texttt{tail $\leq$ split} holds.
+	If \texttt{tail} grows beyond the value of \texttt{split.tmp} as split is set to at line 30, the newly read variable \texttt{t}, which we call \texttt{tail.new}, is larger than \texttt{(tail.old+split.old)/2}, i.e. the value of \texttt{split.tmp}.
+	If the newly read variable \texttt{t}, which we call \texttt{tail.new}, is larger than \texttt{(tail.old + split.old)/2}, i.e. the value of \texttt{split} after linearisation point 30, \texttt{tail} violates this lemma.
+	According to Figure \ref{fig:pop}, this initiates linearisation point 36 which ensures \texttt{tail.new = (tail.new + split.old)/2}.
+	\texttt{tail.new < split.old} holds for line 33 ensures \texttt{t != s}, i.e. \texttt{tail.new $\neq$ split.old}, and linearisation point 5 cannot increase \texttt{tail} beyond \texttt{split}.
+	Therefore, \texttt{tail.new < (tail.new+split.old)/2}.	
 	
 	Table \ref{tab:head} states linearisation points 12, 45, and 47 modify \texttt{head}.
 	Of these linearisation points 45 and 47 decrease head and may violate the Lemma, whereas linearisation point 13 increases head posing no danger of violation.
 	Figure \ref{fig:pop} states linearisation point 45 is reached, only if \texttt{o\_allstolen} is set, since \texttt{o\_allstolen} cannot be altered by any other than the owner thread according to Table \ref{tab:allst}.
 	Combined with Lemma \ref{lem:allstolen}, this linearisation point cannot be reached unless \texttt{allstolen} is set, thus this Lemma is not applicable to the linearisation point.
-	Contrary, linearisation point 47 can still be reached.
+	Conversely, linearisation point 47 can still be reached.
 	In this case, \texttt{shrink\_shared} must have returned \texttt{false}, indicating that \texttt{split < head} (Lemma \ref{lem:shrsh.var}).
-	With this assumption we prove in PVS that \texttt{split $\leq$ head-1} still holds.
-	This is done in Figure \ref{pvs:allst.var}, at \texttt{lem\_head}, and proven using PVS' grind option.
+	This linearisation point decreases head by 1, therefore \texttt{split < head} implies \texttt{split $\leq$ head-1} and the lemma holds.
 	
 	This proves that for all linearisation points modifying \texttt{tail, split,} and \texttt{head} the Lemma still holds.
 \end{proof}
-\begin{figure}[h]
-	\texttt{incr\_tail(tail): posnat = tail+1}\\
-	\texttt{lem\_tail: LEMMA tail < split IMPLIES incr\_tail(tail) <= split}\\\\	
-	\texttt{decr\_tail(tail,split): posnat = (tail+split)/2}\\
-	\texttt{lem\_split: LEMMA NOT tail = split AND t > decr\_tail(tail, split) AND t < split IMPLIES decr\_tail(t, split) > t}\\\\
-	\texttt{decr\_head(head): posnat = head-1}\\
-	\texttt{lem\_head: LEMMA split < head IMPLIES split <= decr\_head(head)}
-	\caption{PVS proof of Lemma \ref{lem:allst.var}}
-	\label{pvs:allst.var}
-\end{figure}
 
 \begin{lemma}
-	Linearisation point 23 $\Rightarrow$\texttt{split.new $\leq$ head}
+	Linearisation point 23 does not increase\\\texttt{split} beyond \texttt{head}.
 	\label{lem:lin23}
 \end{lemma}
 \begin{proof}
-	Lemma \ref{lem:grshr} affirms $\neg$ \texttt{allstolen} holds when \texttt{grow\_shared} is invoked.
-	Table \ref{tab:allst} shows \texttt{allstolen} is altered between the invocation of \texttt{grow\_shared} and linearisation point 23.
-	In combination with the assumption of Lemma \ref{lem:allst.var} that \texttt{tail $\leq$ head} we can model the linearisation point in PVS and proof that this Lemma holds.
-	Figure \ref{pvs:lin23} contains the PVS code used to proof this Lemma.
-	Note how the function \texttt{grow\_shared} adds 2 to \texttt{split+head} instead of 1 and how it subtracts 1 after the division.
-	This is to cope with rounding the resulting integer down as Lace does.
-	Using PVS' grind option lemma \texttt{lem\_incr\_split} is proven and thus Lemma \ref{lem:lin23} holds.
+	Lemma \ref{lem:grshr} affirms $\neg$ \texttt{allstolen} holds when \texttt{grow-\_shared} is invoked.
+	Table \ref{tab:allst} shows \texttt{allstolen} is not altered between the invocation of \texttt{grow\_shared} and linearisation point 23.
+	From Lemma \ref{lem:allst.var} we now conclude \texttt{split $\leq$ head}.
+	Furthermore, Lemma \ref{lem:split} states \texttt{o\_split = split} at each point where \texttt{o\_split} is used.
+	This implies the modification \texttt{split.new = (o\_split.old+head+1)/2 = (split.old+head+1)/2}.
+	Where \texttt{split.old $\leq$ head} implying \texttt{split.new $\leq$ head} for the equation is a floor function and the +1 cannot increase the numerator to \texttt{2*head+2} since \texttt{split.new $\leq$ head}.
+	Therefore linearisation point 23 does not increase \texttt{split} beyond \texttt{head}.
 \end{proof}
-\begin{figure}[h]
-	\texttt{grow\_shared(split, head): posnat = ((split+head+2)/2)-1}\\
-	\texttt{lem\_incr\_split: LEMMA split <= head IMPLIES grow\_shared(split, head) <= head}
-	\caption{PVS proof of Lemma \ref{lem:lin23}.}
-	\label{pvs:lin23}
-\end{figure}
 
 \begin{lemma}
-	\texttt{pop()} $\iff$ \texttt{head.new = head.old - 1}
+	Invoking \texttt{pop()} decreases \texttt{head} with exactly 1
 	\label{lem:pop.head}
 \end{lemma}
 \begin{proof}
@@ -657,47 +641,33 @@ Since these occur at arbitrary points in the algorithm, it does not make sense t
 \end{proof}
 
 \begin{lemma}
-	\texttt{head.new = head.old - 1} and \texttt{pop() =\\ STOLEN $\Rightarrow$ \texttt{allstolen}}
+	If \texttt{head} decreases and \texttt{pop} returns \texttt{STOLEN} this implies \texttt{allstolen} is set.
 	\label{lem:popstolen}
 \end{lemma}
 \begin{proof}
-	Figure \ref{fig:pop} illustrates \texttt{pop = STOLEN} in combination with the decrement of \texttt{head} as linearisation point 45, which can only be reached if \texttt{o\_allstolen} or (\texttt{o\_split == head} and \texttt{shrink\_shared = true}.
-	\texttt{o\_allstolen}). Therefore \texttt{pop = STOLEN $\Rightarrow$ o\_allstolen}. This can be coded into PVS as illustrated in Figure \ref{pvs:popallstolen}. Here we assume \texttt{head} is decremented and \texttt{STOLEN} is returned if the if-statement of Lace rule 44 is true. Using PVS' grind option we find this lemma holds. From Lemma \ref{lem:shrinkshared} we find \texttt{o\_allstolen} or (\texttt{o\_split == head and allstolen}).
-	In combination with Lemma \ref{lem:allstolen} stating that the \texttt{allstolen} variables are equal when at their load operations we conclude that \texttt{pop = STOLEN $\Rightarrow$ allstolen}.
+	Figure \ref{fig:pop} illustrates \texttt{pop = STOLEN} in combination with the decrement of \texttt{head} as linearisation point 45, which can only be reached if \texttt{o\_allstolen} or (\texttt{o\_split == head} and \texttt{shrink\_shared = true}).
+	The latter implies \texttt{o\_allstolen} is \texttt{true} according to Lemma \ref{lem:shrinkshared}.
+	Either proposition of the if-statement requires \texttt{o\_allstolen} to be set and therefore \texttt{allstolen} to be set (Lemma \ref{lem:allstolen}).
 \end{proof}
-\begin{figure}[h]
-	\texttt{shrink\_shared(o\_allstolen, allstolen): bool = o\_allstolen AND allstolen}\\\\
-	\texttt{pop(head, o\_split, o\_allstolen, allstolen): bool = NOT (head = 0) AND (o\_allstolen OR shrink\_shared(o\_allstolen, allstolen))}\\\\
-	\texttt{lem\_allstolen: LEMMA pop(head, o\_split, o\_allstolen, allstolen) IMPLIES o\_allstolen}
-	\caption{PVS proof pop() = STOLEN implies allstolen}
-	\label{pvs:popallstolen}
-\end{figure}
 
 \begin{lemma}
-	Linearisation point 23 \texttt{$\Rightarrow$\\split.new $\geq$ split.old}
+	Linearisation point 23 does not decrease \texttt{split}.
 	\label{lem:growincrsplit}
 \end{lemma}
 \begin{proof}
 	Table \ref{tab:split} states \texttt{grow\_shared} invokes linearisation point 23.
 	In addition, Lemma \ref{lem:grshr} implies \texttt{$\neg$allstolen} when \texttt{grow\_shared} is invoked.
 	Table \ref{fig:pop} indicates \texttt{allstolen} is not altered within this method, therefore we can assume \texttt{$\neg$allstolen} at linearisation point 23.
-	Lemma \ref{lem:allst.var} suggests that \texttt{$\neg$ allstolen $\Rightarrow$ tail $\leq$ split $leq$ head}, therefore we can use this assumption in proving this Lemma.
-	Figure \ref{pvs:growincrsplit} models the desired Lemma in PVS.
-	Here PVS proves \texttt{lem\_grow} using its grind option, proving that linearisation point 23 \texttt{$\Rightarrow$ split.new $\geq$ split.old}.
+	Lemma \ref{lem:allst.var} suggests that \texttt{$\neg$allstolen $\Rightarrow$ tail $\leq$ split $\leq$ head}, therefore we can assume \texttt{head $\geq$ split}.
+	Linearisation point 23 sets split to \texttt{(split+head+1)/2}, from Lemma \ref{lem:allst.var} we know \texttt{head $\geq$ split} implying \texttt{split.new $\geq$ split.old} proving this Lemma.
 \end{proof}
-\begin{figure}[h]
-	\texttt{grow\_shared(split,head):posnat = (split+head+1)/2}\\
-	\texttt{lem\_grow: LEMMA head >= split IMPLIES grow\_shared(split, head) >= split}
-	\caption{PVS proof of Lemma \ref{lem:growincrsplit}}
-	\label{pvs:growincrsplit}
-\end{figure}
 
 \begin{lemma}
-	\texttt{allstolen $\Rightarrow \neg$tail.new = tail.old + 1}
+	If \texttt{allstolen} is \texttt{true}, \texttt{tail} cannot increase
 	\label{lem:allst.incrtail}
 \end{lemma}
 \begin{proof}
-	Table \ref{tab:tail} affirms \texttt{tail} can only increase at linearisation point 5 of Lace and Lemma \ref{lem:incrtail} states that \texttt{allstolen} must be false to increase \texttt{tail}.
+	Table \ref{tab:tail} affirms \texttt{tail} only increases at linearisation point 5 of Lace and Lemma \ref{lem:incrtail} states that \texttt{allstolen} must be false to increase \texttt{tail}.
 	Table \ref{tab:allst} shows that \texttt{allstolen} can only be set to true at line 39 of Lace.	
 	However, the x86 memory model might not have globalised the modification of \texttt{allstolen}, or has globalised the variable after the stealing method checked it.
 	Subsequently, the stealing thread reads \texttt{tail} and \texttt{split} into \texttt{t} and \texttt{s} respectively, and checks whether \texttt{t < s}, a requirement which is also stated in Lemma \ref{lem:incrtail}.	
@@ -709,29 +679,28 @@ Since these occur at arbitrary points in the algorithm, it does not make sense t
 	The update of \texttt{split} is globally visible before the update of \texttt{allstolen} therefore stealing threads which have missed the update of \texttt{allstolen} might still be stopped at line 5 where they check whether \texttt{t < s}.	
 	Now two scenarios can occur, either the update of \texttt{split} is made globally visible between line 4 and linearisation point 5, or it is made globally visible after linearisation point 5 has occured.
 	In the former case, \texttt{cas} ensures the operation of increasing \texttt{tail} fails, since \texttt{split $\neq$ s}, for split is updated whereas the local variable \texttt{s} is equal to the one read at line 3.
-	In the latter case, \texttt{tail} has either grown beyond \texttt{split}, in which case linearisation point 36 ensures \texttt{split} is restored to a valid value as stated in Lemma \ref{lem:lin36}.
-	Or \texttt{tail} $\leq$ new value of \texttt{split}.
+	In the latter case, \texttt{tail} has either grown beyond \texttt{split}, in which case linearisation point 36 ensures \texttt{split} is restored to a valid value as stated in Lemma \ref{lem:lin36}, or \texttt{tail} $\leq$ new value of \texttt{split}.
 	Figure \ref{fig:pop} affirms that in this case \texttt{allstolen} will not be set and this Lemma is not applicable.
 \end{proof}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %				  Ultimate goal lemma			 		%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{lemma}
+%TODO from here on further.
+\begin{invariant}
 	\texttt{tail.new $\geq$ tail.old or\\(tail.new < tail.old} and \texttt{tail.old-tail.new $\leq$ \#pop() == STOLEN)}
 	\label{lem:tail}
-\end{lemma}
+\end{invariant}
 \begin{proof}
 	The first part of the lemma states that \texttt{tail} should increase, this is true for all linearisation points except at line 15 of Lace, as described in Table \ref{tab:tail}.
 	The second part states, that if \texttt{tail} is decreased, it decreases by the same amount as the number of calls to \texttt{pop} returning \texttt{STOLEN}.
 	Upon scrutinisation of linearisation point 15, we find \texttt{tail} is set to \texttt{head-1}.
 	We find \texttt{tail = head.old}, where \texttt{head.old} is the value of \texttt{head} before \texttt{push} is called.
 	Since \texttt{head} is only modified by the owner thread (Table \ref{tab:head}) and due to the linear nature of \texttt{push}, linearisation point 13 came before linearisation point 15 (Figure \ref{fig:push}).
-	Figure \ref{pvs:tail} models these linearisation points by describing \texttt{tail} as \texttt{decr(incr(head))} and \texttt{head.old} as \texttt{head}.
-	Using PVS' grind option, we conclude that indeed \texttt{tail = head.old}.
+	Thus the decrease of \texttt{head} when \texttt{tail} is set to \texttt{head-1} cancels out the increase of \texttt{head} at linearisation point 13.
 	
 	Now, we must establish that once \texttt{pop} returns \texttt{STOLEN}, it is not possible for \texttt{tail} to increase.
-	Note that this is not necessarily true for the Lemma to hold, but it is convenient for the lemma to be proven.
+	Note that this is not necessarily true for the invariant to hold, but it is convenient for the lemma to be proven.
 	Lemma \ref{lem:popstolen} states that \texttt{allstolen} is true in the described scenario, i.e. \texttt{head} is decreased and \texttt{pop} returns \texttt{STOLEN}.
 	Along with Lemma \ref{lem:allst.incrtail}, we find it impossible for \texttt{tail} to increase once \texttt{pop} returned stolen.
 	
@@ -741,16 +710,45 @@ Since these occur at arbitrary points in the algorithm, it does not make sense t
 	Thus, when linearisation point 15 is executed, \texttt{tail.old-tail.new = head.old-head.new}, where \texttt{head.old} is the value of \texttt{head} before the first \texttt{pop() = STOLEN} and \texttt{head.new} is the value of \texttt{head} after the last \texttt{pop() = STOLEN}.
 	This proves Lemma \ref{lem:tail} correct.
 \end{proof}
-\begin{figure}[h]
-	\texttt{incr(head): posnat = head+1}\\
-	\texttt{decr(head): posnat = head-1}\\
-	\texttt{lem\_set\_tail: LEMMA decr(incr(head)) = head}
-	\caption{PVS proof Lemma \ref{lem:tail}}
-	\label{pvs:tail}
-\end{figure}
+
+\begin{invariant}
+	\texttt{(pop() == STOLEN and head.new < head.old) || (pop() == WORK and head.new < head.old)}
+	\label{inv:exec}
+\end{invariant}
+\begin{proof}
+	Lemma \ref{lem:pop.head} expounds invoking \texttt{pop} always decreases \texttt{head}.
+	Furthermore, we assumed the number of calls to \texttt{pop} never exceed the number of calls to \texttt{push}, meaning \texttt{pop} never returns \texttt{EMPTY}.
+	Upon inspection of \texttt{pop} we find this method either returns \texttt{STOLEN} or \texttt{WORK}, thereby proving the invariant.
+\end{proof}
+
+\subsection{Correctness}
+As the required properties stated two invariants needed to be proven to establish correctness of Lace.
+Invariant \texttt{tail.new $\geq$ tail.old} or \texttt{(tail.new < tail.old} and \texttt{tail.old-tail.new $\leq$ \#pop() == STOLEN)} was proven by Invariant \ref{lem:tail}, using Lemmas \ref{lem:popstolen}, \ref{lem:allst.incrtail}, and \ref{lem:pop.head}, as well as Table \ref{tab:linpoints} and flow diagrams \ref{fig:push} and \ref{fig:pop}.
+This proves each stolen task is only stolen once.
+Invariant \texttt{(pop() == STOLEN and head.new < head.old) || (pop() == WORK and head.new < head.old)} was proven by Invariant \ref{inv:exec} using Lemma \ref{lem:pop.head} and the assumed property that the number of calls to \texttt{pop} never exceed the number of calls to \texttt{push}.
+From this invariant we conclude each task is executed exactly once, since the previous Invariant states each task is stolen only once.
+Thus, the synchronisation method from the assumed algorithm invoking the deque methods sees the task was stolen, waits until it finished and uses the result without computing it again.
+Conversely, when the synchronisation method finds a task is not yet executed, it executes the task itself and then uses the result.
+Hereby we have proven each task is executed exactly once as stated as a required property.
 
 \section{Conclusion}
+This study focused on proving the algorithm Lace correct using linearisation points and their control flow.
+Hereby we constructed an informal proof establishing correctness in both required invariants.
+I.e. we found \texttt{tail} either increases or stays equal or it is decreased by the same amount of \texttt{pops} that return \texttt{STOLEN}, proving that each task is only stolen once.
+Furthermore we have proven each task is executed exactly once by proving Invariant \ref{inv:exec}.
+By these proofs we have shown it is possible to proof the required properties of concurrent algorithms using linearisation points and their control flow.
+Concurrent operations such as compare-and-swap and memory fences have properties that are sufficient to prove the correctness of a concurrent program.
+This paper gains further insights in the correlation between these methods and their effect on lockless concurrent algorithms such as Lace.
+It shows the correctness of the algorithm depends on the atomic properties of \texttt{cas} and the assurance of memory fences that each buffered write is made globally visible.
+However the constructed proof is an informal proof, i.e. it is not generated or checked by any theorem prover tool.
+Hence, the presented proof is intended as a basis for creating a formal proof that ensures Lace's correctness.
 
+\subsection{Future work}
+This paper suggests to use theorem prover tools such as VerCors\cite{eemcs24905}, PVS\cite{owre1992pvs} or Isabelle\cite{paulson1994isabelle} to generate a formal proof for Lace.
+A formal proof can be generated on the basis of this paper using these theorem prover tools.
+Such proof creates certainty in the correctness of Lace allowing the algorithm to be used more widespread.
+In addition to creating a formal proof, other variations of Lace can be scrutinised, e.g. variations where stealing threads can steal multiple tasks instead of one.
+These might increase performance of Lace, but need to be proven correct separately since this paper limits itself to thieving threads stealing one task at the time.
 
 \bibliography{Bibliography}
 
